@@ -6,7 +6,7 @@ namespace Lesson1
 	{
 		static void Main(string[] args)
 		{
-			
+			//
 		}
 
 		/// <summary>
