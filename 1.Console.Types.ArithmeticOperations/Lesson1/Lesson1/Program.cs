@@ -4,9 +4,55 @@ namespace Lesson1
 {
 	class Program
 	{
+        #region basic things
+        private static void BasicThings()
+        {
+			bool a1 = true; //false;								!!!
+
+			byte a2 = 55; //2^8 [0-255]								!
+			sbyte a3 = 5;// [-128; 127]
+			int a4; //negative: 2^16; 0, positive: (2^16) - 1		!!!
+			long a5; // 2^32: negative, 0, 2^32 - 1 : positive		!!!
+
+			float a6; //											!
+			double a7; //											!!!
+			decimal a8; //											!!
+
+			char ch = '\n'; //enter									!!
+			string str; //											!!!!
+
+			Console.ReadLine(); // ввод строки с клавиатуры
+			Console.WriteLine("чето"); // вывод чето на консоль 
+			Convert.ToInt32("число");  // преобразовать строку в число
+									   // $"{выполняемый блок кода}"
+
+			int num;
+			num = 10;
+			//var number; //НЕЗЯ
+			//number = 10;
+
+			var doubl1 = 1.234;
+			var str2 = "sdfsdf";
+			var bl = true;
+			var ch1 = 'f';
+
+		}
+
+		private static void ArithmeticOperations()
+        {
+			// + - сумма
+			// - - разность
+			// * - умноежение
+			// / - деление
+			// ++ - увеличить значение переменной на 1: а++
+			// -- - уменьшить значение переменной на 1: а--
+			// % - получить остаток от деления: 10%4=2; 10%5=0;
+		}
+		#endregion
+
 		static void Main(string[] args)
 		{
-			
+			Func9();
 		}
 
 		/// <summary>
@@ -15,7 +61,9 @@ namespace Lesson1
 		/// </summary>
 		private static void Func1()
 		{
-
+			Console.Write("Введите число ");
+			int a = Convert.ToInt32(Console.ReadLine());
+			Console.WriteLine($"Вы ввели число {a}.");
 		}
 
 		/// <summary>
@@ -23,7 +71,11 @@ namespace Lesson1
 		/// </summary>
 		private static void Func2()
 		{
+			byte a = 5;
+			byte b = 12;
+			int c = -25;
 
+			Console.WriteLine($"{a}  {b}  {c}");
 		}
 
 		/// <summary>
@@ -31,6 +83,12 @@ namespace Lesson1
 		/// </summary>
 		private static void Func3()
 		{
+			byte a = 6;
+			byte b = 8;
+			int c = 54;
+			double g = -51.83;
+
+			Console.WriteLine($"{a}\n{b}\n{c}\n{g}");
 
 		}
 
@@ -39,7 +97,10 @@ namespace Lesson1
 		/// </summary>
 		private static void Func4()
 		{
-
+			Console.Write("Введите число ");
+			var x = Convert.ToInt32(Console.ReadLine());
+			var y = 7 * x * x + 3 * x + 6;
+			Console.WriteLine($"Y = {y}.");
 		}
 
 		/// <summary>
@@ -47,7 +108,10 @@ namespace Lesson1
 		/// </summary>
 		private static void Func5()
 		{
-
+			Console.Write("Введите число ");
+			var x = Convert.ToDouble(Console.ReadLine());
+			var y = 7 * x * x + x / 3 + 6;
+			Console.WriteLine($"Y = {y}.");
 		}
 
 		/// <summary>
@@ -62,7 +126,7 @@ namespace Lesson1
 
 		/// <summary>
 		/// Составить программу решения линейного уравнения ax+b=0
-		/// при целочисленных a и b
+		/// При любых (как целых так и вещественных) а и b, вводимых с клавиатуры
 		/// </summary>
 		private static void Func7()
 		{
@@ -92,7 +156,12 @@ namespace Lesson1
 		/// </summary>
 		private static void Func10()
 		{
-
+			var number = Convert.ToByte(Console.ReadLine()); //45: 4,5,9,20
+			var tens = number / 10;
+			var units = number % 10;
+			var sum = tens + units;
+			var mult = tens * units;
+			Console.WriteLine($"a {tens}\nb {units}\nc {sum}\nd {mult}");
 		}
 
 		/// <summary>
@@ -112,21 +181,12 @@ namespace Lesson1
 		}
 
 		/// <summary>
-		/// Дано натуральное число n (n > 9). Найти:
-		/// а) число единиц в нем;
-		/// б) число десятков в нем.
-		/// </summary>
-		private static void Func13()
-		{
-
-		}
-
-		/// <summary>
 		/// Даны два целых числа a и b.
 		/// Если a делится на b или b делится на a, то вывести 1, иначе — любое другое число. 
 		/// </summary>
 		private static void Func15()
 		{
+			//TODO: после логических операций
 		}
 
 		#region Уух сложна
@@ -139,6 +199,15 @@ namespace Lesson1
 		/// </summary>
 		private static void Func9()
 		{
+			//7:23:59 = 26639;
+			var n = Convert.ToInt32(Console.ReadLine());
+
+			var hour = n / 3600;
+			var min = (n % 3600) / 60;
+			var sec = n % 60;
+
+			Console.WriteLine($"a) {hour}\nб) {min}\nв) {sec}");
+
 
 		}
 
