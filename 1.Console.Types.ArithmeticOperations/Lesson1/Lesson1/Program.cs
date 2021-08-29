@@ -52,7 +52,7 @@ namespace Lesson1
 
 		static void Main(string[] args)
 		{
-			Func9();
+			Func14();
 		}
 
 		/// <summary>
@@ -121,7 +121,16 @@ namespace Lesson1
 		/// </summary>
 		private static void Func6()
 		{
-
+			Console.WriteLine("Введите число a");
+			var a = Convert.ToDouble(Console.ReadLine());
+			Console.WriteLine("Введите число b");
+			var b = Convert.ToDouble(Console.ReadLine());
+			
+			var aver = (a + b) / 2;
+			Console.WriteLine($"Среднее арифметическое a и b = {aver}.");
+			
+			var geom = Math.Sqrt(a * b);
+			Console.WriteLine($"Среднее геометрическое a и b = {geom}.");
 		}
 
 		/// <summary>
@@ -130,7 +139,13 @@ namespace Lesson1
 		/// </summary>
 		private static void Func7()
 		{
-
+			Console.WriteLine("Введите число a");
+			var a = Convert.ToDouble(Console.ReadLine());
+			Console.WriteLine("Введите число b");
+			var b = Convert.ToDouble(Console.ReadLine());
+			
+			var x = -b / a;
+			Console.WriteLine($"Корень уровнения ax+b=0 равен {x}");			
 		}
 
 		/// <summary>
@@ -144,7 +159,27 @@ namespace Lesson1
 		/// </summary>
 		private static void Func8()
 		{
+			Console.WriteLine("Введите число a");
+			var a = Convert.ToDouble(Console.ReadLine());
+					
+			var a2 = a * a;
+			var a4 = a2 * a2;
+			Console.WriteLine($"a) a4 = {a4}");
 
+			var a6 = a2 * a2 * a2;
+			Console.WriteLine($"б) a6 = {a6}");
+
+			var a7 = a2 * a2 * a2 * a;
+			Console.WriteLine($"в) a7 = {a7}");
+
+			var a8 = a4 * a4;
+			Console.WriteLine($"г) a8 = {a8}");
+
+			var a9 = a4 * a4 * a;
+			Console.WriteLine($"д) a9 = {a9}");
+
+			var a10 = a4 * a4 * a2;
+			Console.WriteLine($"e) a10 = {a10}");
 		}
 
 		/// <summary>
@@ -169,6 +204,14 @@ namespace Lesson1
 		/// </summary>
 		private static void Func11()
 		{
+			Console.WriteLine("Введите трёхзначное число a");
+			var a = Convert.ToInt32(Console.ReadLine());
+			
+			var hund = a / 100;
+			var tens = (a % 100) / 10;
+			var units = a % 10;
+
+			Console.WriteLine($"Прочтение цифр числа а справа налево {units}{tens}{hund}");
 
 		}
 
@@ -177,7 +220,14 @@ namespace Lesson1
 		/// </summary>
 		private static void Func12()
 		{
+			Console.WriteLine("Введите трёхзначное число a");
+			var a = Convert.ToInt32(Console.ReadLine());
 
+			var char1 = a / 100;
+			var char2_3 = a % 100;
+			
+
+			Console.WriteLine($"Полученное число {char2_3}{char1}");
 		}
 
 		/// <summary>
@@ -217,7 +267,13 @@ namespace Lesson1
 		/// </summary>
 		private static void Func14()
 		{
+			Console.WriteLine("Введите на сколько градусов у повернулась часовая стрелка");
+			var y = Convert.ToDouble(Console.ReadLine());
 
+			var hour = Convert.ToInt32(y) / 30;
+			var min = (y - (y % 0.5)) / 0.5;
+
+			Console.WriteLine($"Число полных часов {hour}\nЧисло полных минут {min}");
 		}
 
 		#endregion
