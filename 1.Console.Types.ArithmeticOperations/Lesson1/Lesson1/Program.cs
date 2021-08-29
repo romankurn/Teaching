@@ -279,6 +279,13 @@ namespace Lesson1
 			var min = b - ((b / 60) * 60);
 
 			Console.WriteLine($"Число полных часов {hour}\nЧисло полных минут {min}");
+
+			var totalMinutes = (int) (y * 2);
+			var totalHours = totalMinutes / 60;
+			var hours = totalHours % 24;
+			var minutes = totalMinutes % 60;
+			
+			Console.WriteLine($"{hours}:{minutes}");
 		}
 
 		#endregion
