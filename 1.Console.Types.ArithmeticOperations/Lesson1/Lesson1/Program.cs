@@ -52,7 +52,7 @@ namespace Lesson1
 
 		static void Main(string[] args)
 		{
-			Func11();
+			Func14();
 		}
 
 		/// <summary>
@@ -271,8 +271,12 @@ namespace Lesson1
 			Console.WriteLine("Введите на сколько градусов у повернулась часовая стрелка");
 			var y = Convert.ToDouble(Console.ReadLine());
 
-			var hour = Convert.ToInt32(y) / 30;
-			var min = (y - (y % 0.5)) / 0.5;
+			var A = ((y - (y % 30)) / 30); // считает количество прошедших часов
+			int B = Convert.ToInt32(A); // избавляется от Double, чтобы делить без остатков в Int
+			int hour = B - ((B / 24) * 24);
+			var a = ((y - (y % 0.5)) / 0.5); // считает количество прошедших минут
+			var b = Convert.ToInt32(a); // избавляется от Double, чтобы делить без остатков в Int
+			var min = b - ((b / 60) * 60);
 
 			Console.WriteLine($"Число полных часов {hour}\nЧисло полных минут {min}");
 		}
