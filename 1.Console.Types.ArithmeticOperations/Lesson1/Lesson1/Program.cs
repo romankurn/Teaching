@@ -52,7 +52,11 @@ namespace Lesson1
 
 		static void Main(string[] args)
 		{
-			Func14();
+			MathExamples.Func1();
+			MathExamples.Func2();
+			MathExamples.Func3();
+			MathExamples.Func4();
+			MathExamples.Func5();
 		}
 
 		/// <summary>
