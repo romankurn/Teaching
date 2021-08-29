@@ -226,9 +226,9 @@ namespace Lesson1
 
 			var char1 = a / 100;
 			var char2_3 = a % 100;
-			
+			var conv = char2_3 * 10 + char1;
 
-			Console.WriteLine($"Полученное число {char2_3}{char1}");
+			Console.WriteLine($"Полученное число {conv}");
 		}
 
 		/// <summary>
