@@ -52,7 +52,7 @@ namespace Lesson1
 
 		static void Main(string[] args)
 		{
-			Func14();
+			Func11();
 		}
 
 		/// <summary>
@@ -210,8 +210,9 @@ namespace Lesson1
 			var hund = a / 100;
 			var tens = (a % 100) / 10;
 			var units = a % 10;
+			var conv = units * 100 + tens * 10 + hund;
 
-			Console.WriteLine($"Прочтение цифр числа а справа налево {units}{tens}{hund}");
+			Console.WriteLine($"Прочтение цифр числа а справа налево {conv}");
 
 		}
 
