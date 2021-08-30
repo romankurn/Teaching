@@ -67,7 +67,16 @@ namespace Lesson1
 
 		public static void Func1()
 		{
+			Console.WriteLine("x = ");
+			var x = Convert.ToDouble(Console.ReadLine());
+			Console.WriteLine("y = ");
+			var y = Convert.ToDouble(Console.ReadLine());
+			Console.WriteLine("n = ");
+			var n = Convert.ToDouble(Console.ReadLine());
 
+			var a = Math.Sqrt(n * ((x + y) / (Math.Log(Math.Pow(x, 2)))));
+
+			Console.WriteLine($"a = {a}");
 		}
 
 		public static void Func2()
