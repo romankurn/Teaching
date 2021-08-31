@@ -1,7 +1,69 @@
-﻿namespace Lesson2
+﻿using System;
+
+namespace Lesson2
 {
 	public class Conditions
 	{
+        #region Description
+		private void Description()
+        {
+			//and &&: cond1 && cond2 - истина только когда оба истина
+			//or ||: cond1 || cond2 - истина когда одно из условий истина
+			//not !: !cond - истина когда условие ложно
+			//equal == : cond1 == cond2 - истина когда условия равны
+			//not equal != : cond1 != cond2 - истина когда условия разные
+
+			bool cond1 = 1 != 2;
+
+			//1
+			if(cond1)
+            {
+				//выполнить если истина
+            }
+
+			//2
+			if (cond1)
+			{
+				//выполнить если истина
+			}
+			else
+			{
+				//выполнить в противном случае
+			}
+
+			int value = 1;
+			switch (value)
+            {
+				case 1:
+					Console.WriteLine(1);
+					break;
+				case 2:
+					Console.WriteLine(1);
+					break;
+				case 3:
+					Console.WriteLine(1);
+					break;
+				default:
+					Console.WriteLine("нинаю");
+				break;
+			}
+
+			//тернарный оператор
+			var value1 = 1;
+			var value2 = 2;
+			var result = cond1 ? value1 : value2;
+
+			if (cond1)
+            {
+				result = value1;
+            }
+			else
+            {
+				result = value2;
+            }
+		}
+		#endregion
+
 		#region Simple conditions
 
 		/// <summary>
@@ -12,6 +74,13 @@
 		/// </summary>
 		public static void Func1()
 		{
+			var A = Convert.ToBoolean(Console.ReadLine());
+			var B = Convert.ToBoolean(Console.ReadLine());
+			var C = Convert.ToBoolean(Console.ReadLine());
+
+			var result1 = !(A || !B && C) || C;
+			var result2 = !(A && !B || C) && B;
+			var result3 = !(!A || B && C) || A;
 		}
 
 		/// <summary>
@@ -38,17 +107,14 @@
 		/// </summary>
 		public static void Func3()
 		{
+			var X = Convert.ToDouble(Console.ReadLine());
+
+			var result9 = X > 3 && X < 10;
+
+			Console.WriteLine($"и) {result9}");
 
 		}
 
-		/// <summary>
-		/// Даны два целых числа a и b.
-		/// Если a делится на b или b делится на a, то вывести yes, иначе — no. 
-		/// </summary>
-		private static void Func4()
-		{
-			
-		}
 
 		/// <summary>
 		/// Записать условие, которое является истинным, когда:
@@ -59,18 +125,29 @@
 		///д) только одно из чисел А, В и С меньше 50;
 		///е) хотя бы одно из чисел А, В, С отрицательно.
 		/// </summary>
-		private static void Func5()
+		public static void Func5()
 		{
+			var A = Convert.ToDouble(Console.ReadLine());
+			var B = Convert.ToDouble(Console.ReadLine());
+			var C = Convert.ToDouble(Console.ReadLine());
 
+			var result6 = A < 0 || B < 0 || C < 0;
+
+			Console.WriteLine($"е) {result6}");
 		}
 
 		/// <summary>
 		/// Записать условие, которое является истинным, когда:
 		///а) целое А кратно двум или трем;
-		///б) целое А не кратно трем и оканчивается нулем.
+		///б) целое А не кратно трем и оканчивается 5.
 		/// </summary>
-		private static void Func6()
+		public static void Func6()
 		{
+			var A = Convert.ToInt32(Console.ReadLine());
+
+			var result2 = A % 3 != 0 && A % 5 == 0 && A % 10 != 0;
+
+			Console.WriteLine($"б) {result2}");
 
 		}
 
@@ -79,7 +156,7 @@
 		///а) целое N кратно пяти или семи;
 		///б) целое N кратно четырем и не оканчивается нулем.
 		/// </summary>
-		private static void Func7()
+		public static void Func7()
 		{
 
 		}
@@ -87,6 +164,62 @@
 		#endregion
 
 		#region Conditional operator
+
+		/// <summary>
+		/// Даны два целых числа a и b
+		/// Если a делится на b или b делится на a, то вывести yes, иначе — no. 
+		/// </summary>
+		public static void Func4()
+		{
+			Console.WriteLine("Введите а");
+			var a = Convert.ToInt32(Console.ReadLine());
+			Console.WriteLine("Введите b");
+			var b = Convert.ToInt32(Console.ReadLine());
+
+			var result = a % b == 0 || b % a == 0 ? "yes" : "no";
+			Console.WriteLine(result);
+
+			if (a % b == 0 || b % a == 0)
+			{
+				Console.WriteLine("yes");
+			}
+			else
+			{
+				Console.WriteLine("no");
+			}
+
+			
+
+				//так же через тернарный оператор
+		}
+
+		/// <summary>
+		/// 
+		/// В зависимости от света светофора (Красный / жёлтый / зелёный) выдать результат: 
+		/// ехать / приготовиться / стоять / сфетофор сломался (если ни одно из них) 
+		/// </summary>
+		public static void Func18()
+        {
+			
+			Console.WriteLine("Какой цвет?");
+			var color = Console.ReadLine();
+
+			switch (color)
+			{
+				case "red":
+					Console.BackgroundColor = ConsoleColor.Red;
+					break;
+				case "yellow":
+					Console.BackgroundColor = ConsoleColor.Yellow;
+					break;
+				case "green":
+					Console.BackgroundColor = ConsoleColor.Green;
+					break;
+				default:
+					Console.WriteLine("Светофор сломался");
+					break;
+			}
+		}
 
 		/// <summary>
 		/// Рассчитать значение у при заданном значении х:
@@ -102,6 +235,45 @@
 		/// </summary>
 		public static void Func9()
 		{
+			Console.WriteLine("Введите число 1");
+			var number1 = Convert.ToDouble(Console.ReadLine());
+			Console.WriteLine("Введите число 2");
+			var number2 = Convert.ToDouble(Console.ReadLine());
+
+			var result = number1 > number2 
+				? $"{number1} > {number2}" 
+				: $"{number1} < {number2}";
+
+
+			var cond1 = number1 == number2;
+			var value1 = $"{number1} = {number2}";
+			var value2 = number1 > number2 ? $"{number1} > {number2}" : $"{number1} < {number2}";
+
+			result = cond1 ? value1 : value2;
+
+			result = number1 == number2 
+				? $"{number1} = {number2}" 
+				: (number1 > number2 
+					? $"{number1} > {number2}" 
+					: $"{number1} < {number2}");
+
+			if ( number1 == number2 )
+            {
+				result = $"{number1} = {number2}";
+
+			}
+			else if (number1 > number2)
+            {
+				result = $"{number1} > {number2}";
+
+			}
+            else
+            {
+				result =$"{number1} < {number2}";
+
+            }
+			
+			Console.WriteLine(result);
 
 		}
 
@@ -144,7 +316,20 @@
 		/// </summary>
 		public static void Func14()
 		{
+			Console.WriteLine("Введите год рождения");
+			var birthYear = Convert.ToInt32(Console.ReadLine());
+			Console.WriteLine("Введите месяц рождения");
+			var birtMonth = Convert.ToInt32(Console.ReadLine());
+			Console.WriteLine("Введите текущий год");
+			var currentYear = Convert.ToInt32(Console.ReadLine());
+			Console.WriteLine("Введите текущий месяц");
+			var currentMonth = Convert.ToInt32(Console.ReadLine());
+
+
 			//показать, как это делается с DateTime
+			var birthDate = new DateTime(birthYear, birtMonth, 1);
+			var currentDate = DateTime.Now; //new DateTime(currentYear, currentMonth, 2);
+			var diff = (int)(currentDate - birthDate).TotalDays / 365; 
 		}
 
 		/// <summary>
