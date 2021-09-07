@@ -23,18 +23,48 @@ namespace Lesson2
 
 				Console.Write($"{i} ");
 			}
+
+			var condition = true;
+			//цикл do-while
+			do
+			{
+				//action
+			} while (condition);
+			//int number;
+			//do
+			//{
+			//	Console.Write("Введите отрицательное число >> ");
+			//	number = Convert.ToInt32(Console.ReadLine());
+			//}
+			//while (number >= 0);
+
+			while (condition)
+			{
+
+			}
+			//int number = 0;
+			//while (number >= 0)
+			//{
+			//	Console.Write("Введите отрицательное число >> ");
+			//	number = Convert.ToInt32(Console.ReadLine());
+			//}
+
+
+	
+
+
 		}
-        #endregion
+		#endregion
 
-        #region Цикл for
+		#region Цикл for
 
-        #region Простота
+		#region Простота
 
 
-        /// <summary>
-        /// Найти сумму всех целых чисел от –10 до b (значение b вводится с клавиатуры; b>–10)
-        /// </summary>
-        public static void Func1()
+		/// <summary>
+		/// Найти сумму всех целых чисел от –10 до b (значение b вводится с клавиатуры; b>–10)
+		/// </summary>
+		public static void Func1()
 		{
 			Console.WriteLine("Введите число b");
 			var b = Convert.ToInt32(Console.ReadLine());
@@ -201,17 +231,6 @@ namespace Lesson2
 
 		}
 
-		/// <summary>
-		/// Гражданин открыл счет в банке, вложив amount руб.
-		/// Через каждый месяц размер вклада увеличивается на percentage % от имеющейся суммы. Определить:
-		/// а) прирост суммы вклада за n-й месяц;
-		/// б) сумму вклада через n месяцев
-		/// </summary>
-		public static void Func11()
-		{
-
-		}
-
 		#endregion
 
 		#region Посерьезнее
@@ -303,7 +322,6 @@ namespace Lesson2
 
 		#endregion
 
-
 		#region Цикл while
 
 		/// <summary>
@@ -313,17 +331,52 @@ namespace Lesson2
 		/// </summary>
 		public static void Func18()
 		{
-
+			var number = 1;
+			var couter = 0;
+			var sum = 0;
+			while(number != 0)
+			{
+				number = Convert.ToInt32(Console.ReadLine());
+				sum += number;
+				couter++;
+			}
 		}
 
 		/// <summary>
 		/// Найти:
-		///а) первое число в последовательности Фибоначчи, большее n(значение n вводится с клавиатуры; n > 1);
+		/// а) первое число в последовательности Фибоначчи, большее n(значение n вводится с клавиатуры; n > 1);
 		/// б) сумму всех чисел в последовательности Фибоначчи, которые не превосходят n
 		/// </summary>
 		public static void Func19()
 		{
+			Console.WriteLine("Введите число n");
+			var n = Convert.ToInt32(Console.ReadLine());
 
+			var current = 0;
+			var previous = 1;
+			var prePrevious = 1;
+			var k = 2;
+			var sum = 2;
+
+			while(current <= n) //1 1 2 3 5 8 13 21
+			{
+				current = previous + prePrevious;// 2 + 3
+
+				prePrevious = previous;
+				previous = current;
+				k++; //4 5
+				
+				sum += current; //2 + 2 + 3 + 5
+			}
+			if(n == prePrevious)
+			{
+				sum -= (prePrevious + previous);
+			}
+			else
+			{
+				sum -= previous;
+			}
+			Console.WriteLine($"Число последовательности = {current}; порядковый номер члена {k}; сумма = {sum}");
 		}
 
 		/// <summary>
@@ -332,6 +385,65 @@ namespace Lesson2
 		public static void Func20()
 		{
 
+		}
+
+		/// <summary>
+		/// Гражданин открыл счет в банке, вложив amount руб.
+		/// Через каждый месяц размер вклада увеличивается на percentage % от имеющейся суммы. Определить:
+		/// а) прирост суммы вклада за n-й месяц;
+		/// б) сумму вклада через n месяцев
+		/// в) в каком месяце счет достигнет goalSum
+		/// </summary>
+		public static void Func11()
+		{
+			Console.WriteLine("Какая сумма вклада");
+			var amout = Convert.ToDecimal(Console.ReadLine());
+			Console.WriteLine("Какой процент");
+			var percentage  = Convert.ToDecimal(Console.ReadLine());
+			Console.WriteLine("Количество месяцев");
+			var n = Convert.ToInt32(Console.ReadLine());
+			Console.WriteLine("Желаемая сумма");
+			var goalSum = Convert.ToDecimal(Console.ReadLine());
+
+			//for (var month = 1; month <= n; month++)
+			//{
+			//	amout *= 1 + percentage;
+			//}
+			//var increase = amout - (amout / (1 + percentage));
+
+			var counter = 0;
+
+			while (amout < goalSum)
+			{
+				amout *= 1 + percentage;
+				counter++;
+			}
+			Console.WriteLine($"Через {counter} месяцев");
+		}
+
+		/// <summary>
+		/// Дано натуральное число. Определить количество цифр в нем
+		/// </summary>
+		public static void Func26()
+		{
+			var n = Convert.ToInt64(Console.ReadLine());
+			var counter = 0;
+
+			while(n != 0)
+			{
+				n /= 10;
+				counter++;
+			}
+
+			while (true)
+			{
+				n /= 10;
+				counter++;
+
+				if (n == 0)
+					break;
+			}
+			Console.WriteLine(counter);
 		}
 
 		#endregion
