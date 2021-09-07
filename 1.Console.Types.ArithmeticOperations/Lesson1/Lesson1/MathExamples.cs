@@ -67,27 +67,66 @@ namespace Lesson1
 
 		public static void Func1()
 		{
+			Console.WriteLine("x = ");
+			var x = Convert.ToDouble(Console.ReadLine());
+			Console.WriteLine("y = ");
+			var y = Convert.ToDouble(Console.ReadLine());
+			Console.WriteLine("n = ");
+			var n = Convert.ToDouble(Console.ReadLine());
 
+			var a = Math.Sqrt(n * ((x + y) / (Math.Log(Math.Pow(x, 2)))));
+
+			Console.WriteLine($"a = {a}");
 		}
 
 		public static void Func2()
 		{
+			Console.WriteLine("x = ");
+			var x = Convert.ToDouble(Console.ReadLine());
+			Console.WriteLine("y = ");
+			var y = Convert.ToDouble(Console.ReadLine());
+			Console.WriteLine("n = ");
+			var n = Convert.ToDouble(Console.ReadLine());
 
+			var b = Math.Pow(Math.E, -Math.Abs(y)) + 1 / (Math.Pow(x, 2) * Math.Sqrt(n));
+
+			Console.WriteLine($"b = {b}");
 		}
 
 		public static void Func3()
 		{
+			Console.WriteLine("x = ");
+			var x = Convert.ToDouble(Console.ReadLine());
+			Console.WriteLine("y = ");
+			var y = Convert.ToDouble(Console.ReadLine());
+			Console.WriteLine("n = ");
+			var n = Convert.ToDouble(Console.ReadLine());
 
+			var c = Math.Atan((x / n)) + Math.Abs(Math.Pow(x, 3) * Math.Sqrt((n * y)));
+
+			Console.WriteLine($"c = {c}");
 		}
 
 		public static void Func4()
 		{
+			Console.WriteLine("x = ");
+			var x = Convert.ToDouble(Console.ReadLine());
 
+			var d = Math.Sign((Math.Sin(x));
+			
+			Console.WriteLine($"d = {d}");
 		}
 
 		public static void Func5()
 		{
+			Console.WriteLine("i = ");
+			var i = Convert.ToDouble(Console.ReadLine());
+			Console.WriteLine("j = ");
+			var j = Convert.ToDouble(Console.ReadLine());
 
+			var a = Math.Abs(Math.Pow(Math.Abs(i - j), 1 / Math.Pow(i, 3)) - Math.Pow(i, Math.Sqrt(Math.Abs(i)))) / Math.Abs(1 + Math.Pow(i, (i / j)));
+
+			Console.WriteLine($"a = {a}");
 		}
 	}
 }
