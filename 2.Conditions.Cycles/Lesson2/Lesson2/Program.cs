@@ -6,10 +6,9 @@ namespace Lesson2
 	{
 		static void Main(string[] args)
 		{
-			Conditions.Func14();
-
+			Conditions.Func17();
 		}
 
-		
+
 	}
 }

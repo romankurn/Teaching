@@ -1,18 +1,51 @@
-﻿namespace Lesson2
+﻿using System;
+
+namespace Lesson2
 {
 	public class Cycles
 	{
-		#region Цикл for
+        #region Description
+		public static void Description()
+        {
+            //цикл с параметром/условием/счетчиком
+            for (var i = 1; i < 10; i++)
+            {
+                if (i == 5)
+                    continue; //перейти к следующему шагу цикла
 
-		#region Простота
+                Console.Write($"{i} ");
+            }
 
-		
-		/// <summary>
-		/// Найти сумму всех целых чисел от –10 до b (значение b вводится с клавиатуры; b>–10)
-		/// </summary>
-		public static void Func1()
+			for (var i = 10; i > 1; --i)
+			{
+				if (i == 5)
+					break;
+
+				Console.Write($"{i} ");
+			}
+		}
+        #endregion
+
+        #region Цикл for
+
+        #region Простота
+
+
+        /// <summary>
+        /// Найти сумму всех целых чисел от –10 до b (значение b вводится с клавиатуры; b>–10)
+        /// </summary>
+        public static void Func1()
 		{
+			Console.WriteLine("Введите число b");
+			var b = Convert.ToInt32(Console.ReadLine());
+			var sum = 0;
 
+			for(var i = -10; i < b; i++)
+            {
+				sum += i; // sum = sum + i;
+            }
+
+			Console.WriteLine(sum);
 		}
 
 		/// <summary>
@@ -20,7 +53,20 @@
 		/// </summary>
 		public static void Func2()
 		{
+			Console.WriteLine("Введите число a");
+			var a = Convert.ToInt32(Console.ReadLine());
+			Console.WriteLine($"Введите число b>{a}");
+			var b = Convert.ToInt32(Console.ReadLine());
+			
+			double sum = 0;
+			var counter = 0;
+			for(var i = a; i <= b; i++)
+            {
+				sum += i;
+				counter++;
+            }
 
+			Console.WriteLine(sum / counter);
 		}
 
 		/// <summary>
@@ -37,7 +83,21 @@
 		/// </summary>
 		public static void Func4()
 		{
+			Console.WriteLine("Введите число n");
+			var n = Convert.ToInt32(Console.ReadLine());
+			
+			double sum = 0;
+			int denominator = 1;
+			var start = DateTime.Now;
+			for( var i = 1; i <= n; i++)
+            {
+				sum += 1.0 / denominator;
+				denominator *= 3;
+			}
+			var end = DateTime.Now;
+			var time = end - start;
 
+			Console.WriteLine(sum);
 		}
 
 		/// <summary>
@@ -58,7 +118,14 @@
 		/// </summary>
 		public static void Func6()
 		{
+			Console.WriteLine("Вводите 10 чисел через ентер");
 
+			var sum = 0;
+			for (var i = 1; i <= 10; i++)
+            {
+				sum += Convert.ToInt32(Console.ReadLine());
+            }
+			Console.WriteLine(sum);
 		}
 
 		/// <summary>
@@ -67,7 +134,16 @@
 		/// </summary>
 		public static void Func7()
 		{
+			Console.WriteLine("Введите количество чисел");
+			var n = Convert.ToInt32(Console.ReadLine());
+			Console.WriteLine($"Вводите {n} чисел через ентер");
 
+			double sum = 0;
+			for (var i = 1; i <= n; i++)
+			{
+				sum += Convert.ToInt32(Console.ReadLine());
+			}
+			Console.WriteLine(sum / n);
 		}
 
 		/// <summary>
@@ -97,7 +173,23 @@
 		/// </summary>
 		public static void Func9()
 		{
+			//f(An)=An-2+An-1;
 
+			Console.WriteLine("Какой член последовательности ищем?");
+			var k = Convert.ToInt32(Console.ReadLine());
+
+			var current = 0;
+			var previous = 1;
+			var prePrevious = 1;
+
+			for(var i = 3; i <= k; i++)
+            {
+				current = previous + prePrevious;
+
+				prePrevious = previous;
+				previous = current;
+			}
+			Console.WriteLine($"k-й: {current}");
 		}
 
 		/// <summary>
@@ -135,6 +227,7 @@
 		/// <summary>
 		/// Вычислить сумму 1! + 2! + 3! +  … + n!
 		/// 1 < n <= 10
+		/// без вложенных цыклов
 		/// </summary>
 		public static void Func13()
 		{
@@ -155,7 +248,35 @@
 		/// </summary>
 		public static void Func15()
 		{
+			//a2*10^2+a1*10^1+a0*10^0, a2=3, a1=4, a0=8: 3*10^2+4*10^1+8 = 348
+			//an*10^n+an-1 * 10^n-1 .... + a1*10^1+a0*10^0
 
+			//45: lg(45)=[1-2)
+			//48798: lg(48798) = [4-5)
+
+			Console.WriteLine("Введите число");
+			var number = Convert.ToInt64(Console.ReadLine());
+			Console.WriteLine("Введите цифру");
+			var digit = Convert.ToByte(Console.ReadLine());
+
+			var degree = (byte)Math.Log10(number);
+
+			//258
+			//258 % 10^3 / 10^2 - 2
+			//258 % 10^2 / 10^1 - 5
+			//258 % 10^1 / 10^0 - 8
+			var isDigitExists = false;
+			for(var currentDegree = 0; currentDegree <= degree; currentDegree++)
+            {
+				var discharge = (int)(number % Math.Pow(10, currentDegree + 1)) / (int)Math.Pow(10, currentDegree);
+				if (discharge == digit)
+                {
+					isDigitExists = true;
+					break;
+                }
+			}
+
+			Console.WriteLine($"Цифра {digit} {(isDigitExists ? "" : "не")} входит в число {number}");
 		}
 
 		/// <summary>
@@ -181,6 +302,7 @@
 		#endregion
 
 		#endregion
+
 
 		#region Цикл while
 
