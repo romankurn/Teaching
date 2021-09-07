@@ -36,6 +36,11 @@ namespace Lesson1
 			var bl = true;
 			var ch1 = 'f';
 
+			//					        [0010 1100] //54
+			//[00000000000000000000 0001 0010 1100] //300
+			int i1 = 300;
+			byte b1 = (byte)i1; //54
+
 		}
 
 		private static void ArithmeticOperations()
@@ -52,11 +57,13 @@ namespace Lesson1
 
 		static void Main(string[] args)
 		{
-			MathExamples.Func1();
-			MathExamples.Func2();
-			MathExamples.Func3();
-			MathExamples.Func4();
-			MathExamples.Func5();
+			var a = 5;
+			var b = 10 * a++;
+			//b =50 ; a=6
+
+			var a2 = 5;
+			var b2 = 10 * ++a2;
+			//b = 60; a = 6
 		}
 
 		/// <summary>
