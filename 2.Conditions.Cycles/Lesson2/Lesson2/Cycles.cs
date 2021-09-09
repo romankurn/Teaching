@@ -603,7 +603,7 @@ namespace Lesson2
 
 		#endregion
 
-		#region Вложенные цыклы
+		#region Вложенные циклы
 
 		/// <summary>
 		/// Напечатать следующие таблицы
@@ -622,7 +622,23 @@ namespace Lesson2
 		/// </summary>
 		public static void Func28()
 		{
+			//for (var i = 1; i <= 5; i++)
+			//{
+			//	for (var j = 1; j <= 5; j++)
+			//	{
+			//		Console.Write($"{i}-{j} ");
+			//	}
+			//	Console.WriteLine();
+			//}
 
+			for (var i = 0; i <= 9; i++)
+			{
+				for (var j = 1; j <= 10; j++)
+				{
+					Console.Write($"{i * 10 + j}\t");
+				}
+				Console.WriteLine();
+			}
 		}
 
 		/// <summary>
@@ -643,7 +659,14 @@ namespace Lesson2
 		/// </summary>
 		public static void Func21()
 		{
-
+			for (var i = 1; i <= 5; i++)
+			{
+				for (var j = 1; j <= i; j++)
+				{
+					Console.Write($"{i} ");
+				}
+				Console.WriteLine();
+			}
 		}
 
 		/// <summary>
@@ -655,7 +678,7 @@ namespace Lesson2
 		/// 3++
 		/// 4+++
 		/// </summary>
-		public static void Func26()
+		public static void Func26_2()
 		{
 
 		}
@@ -686,11 +709,29 @@ namespace Lesson2
 		/// </summary>
 		public static void Func23()
 		{
+			for (var number = 101; number <= 999; number++)
+			{
+				var isSimple = true;
 
+				if (number % 2 == 0)
+					continue;
+
+				for (var divider = 2; divider <= number / 2; divider++)
+				{
+					if (number % divider == 0)
+					{
+						isSimple = false;
+						break;
+					}
+				}
+				if (isSimple)
+					Console.Write($"{number} ");
+			}
 		}
 
 		/// <summary>
-		/// Найти размеры всех прямоугольников, площадь которых равна заданному натуральному числу s и стороны которых выражены натуральными числами
+		/// Найти размеры всех прямоугольников, площадь которых равна заданному натуральному числу s 
+		/// и стороны которых выражены натуральными числами
 		/// При этом решения, которые получаются перестановкой размеров сторон считать разными
 		/// </summary>
 		public static void Func24()
@@ -699,14 +740,38 @@ namespace Lesson2
 		}
 
 		/// <summary>
-		/// Составить программу нахождения цифрового корня натурального числа. Цифровой корень данного числа получается следующим образом:
-		/// Если сложить все цифры этого числа, затем все цифры найденной суммы и повторять этот процесс, то в результате будет получено однозначное число (цифра),
+		/// Составить программу нахождения цифрового корня натурального числа. 
+		/// Цифровой корень данного числа получается следующим образом:
+		/// Если сложить все цифры этого числа, затем все цифры найденной суммы и повторять этот процесс, 
+		/// то в результате будет получено однозначное число (цифра),
 		/// которая и называется цифровым корнем данного числа.
 		/// </summary>
 		public static void Func25()
 		{
+			Console.WriteLine("Введите число");
+			var number = Convert.ToUInt64(Console.ReadLine());
+			
+			var result = 0;
+						
+			while (true)
+			{
+				var numberOfDischarges = (int)Math.Log10(number);
 
+				for (var i = 1; i <= numberOfDischarges + 1; i++)
+				{
+					var currentDischrge = (int)(number % Math.Pow(10, i) / Math.Pow(10, i - 1));
+					result += currentDischrge;
+				}
+
+				if (result < 10)
+					break;
+				number = (ulong)result;
+				result = 0;
+			}
+			Console.WriteLine($"Цифровой корнь числа {result}");
+			
 		}
+		
 
 		#endregion
 
