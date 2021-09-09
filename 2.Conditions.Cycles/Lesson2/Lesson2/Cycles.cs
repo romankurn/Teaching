@@ -4,17 +4,17 @@ namespace Lesson2
 {
 	public class Cycles
 	{
-        #region Description
+		#region Description
 		public static void Description()
-        {
-            //цикл с параметром/условием/счетчиком
-            for (var i = 1; i < 10; i++)
-            {
-                if (i == 5)
-                    continue; //перейти к следующему шагу цикла
+		{
+			//цикл с параметром/условием/счетчиком
+			for (var i = 1; i < 10; i++)
+			{
+				if (i == 5)
+					continue; //перейти к следующему шагу цикла
 
-                Console.Write($"{i} ");
-            }
+				Console.Write($"{i} ");
+			}
 
 			for (var i = 10; i > 1; --i)
 			{
@@ -50,7 +50,7 @@ namespace Lesson2
 			//}
 
 
-	
+
 
 
 		}
@@ -70,10 +70,10 @@ namespace Lesson2
 			var b = Convert.ToInt32(Console.ReadLine());
 			var sum = 0;
 
-			for(var i = -10; i < b; i++)
-            {
+			for (var i = -10; i < b; i++)
+			{
 				sum += i; // sum = sum + i;
-            }
+			}
 
 			Console.WriteLine(sum);
 		}
@@ -87,23 +87,36 @@ namespace Lesson2
 			var a = Convert.ToInt32(Console.ReadLine());
 			Console.WriteLine($"Введите число b>{a}");
 			var b = Convert.ToInt32(Console.ReadLine());
-			
+
 			double sum = 0;
 			var counter = 0;
-			for(var i = a; i <= b; i++)
-            {
+			for (var i = a; i <= b; i++)
+			{
 				sum += i;
 				counter++;
-            }
+			}
 
 			Console.WriteLine(sum / counter);
 		}
 
 		/// <summary>
-		/// сумму квадратов всех целых чисел от a до b (значения a и b вводятся с клавиатуры; b>a).
+		/// сумму квадратов всех целых чисел от a до b (значения a и b вводятся с клавиатуры).
 		/// </summary>
 		public static void Func3()
 		{
+			Console.WriteLine("Введите два разных целых числа");
+			var a = Convert.ToInt32(Console.ReadLine());
+			var b = Convert.ToInt32(Console.ReadLine());
+
+			var sum = 0;
+			var max = Math.Max(a, b);
+			var min = Math.Min(a, b);
+
+			for (var number = min; number <= max; number++)
+			{
+				sum += number * number;
+			}
+			Console.WriteLine($"Сумма квадратов чисел = {sum}");
 
 		}
 
@@ -115,12 +128,12 @@ namespace Lesson2
 		{
 			Console.WriteLine("Введите число n");
 			var n = Convert.ToInt32(Console.ReadLine());
-			
+
 			double sum = 0;
 			int denominator = 1;
 			var start = DateTime.Now;
-			for( var i = 1; i <= n; i++)
-            {
+			for (var i = 1; i <= n; i++)
+			{
 				sum += 1.0 / denominator;
 				denominator *= 3;
 			}
@@ -136,6 +149,19 @@ namespace Lesson2
 		/// </summary>
 		public static void Func5()
 		{
+			Console.WriteLine("Введите число n");
+			var n = Convert.ToInt32(Console.ReadLine());
+
+			double sum = 0;
+			int denominator = 1;
+			int numerator = 1;
+			for (var number = 1; number <= n; number++)
+			{
+				sum += (double)numerator / denominator;
+				numerator *= -1;
+				denominator++;
+			}
+			Console.WriteLine($"Сумма всех членов последовательности = {sum}");
 
 		}
 
@@ -152,9 +178,9 @@ namespace Lesson2
 
 			var sum = 0;
 			for (var i = 1; i <= 10; i++)
-            {
+			{
 				sum += Convert.ToInt32(Console.ReadLine());
-            }
+			}
 			Console.WriteLine(sum);
 		}
 
@@ -181,12 +207,25 @@ namespace Lesson2
 		/// Определить без использования условий и возведения в степень:
 		///а) |a1| + |a2| + … + |an|;
 		///б) |a1| * |a2| * … * |an|;
-		///в) a1 + a2, a2 + a3 …, an-1 + an;
-		///г) a1 — a2, a2 — a3, …, an-1 — an;
+		///в) a1 + a2, a2 + a3 …, an-1 + an; ???? 1) как так можно выводить? 2) а что если n нечётное? 
+		///г) a1 — a2, a2 — a3, …, an-1 — an; ????
 		/// </summary>
 		public static void Func8()
 		{
+			Console.WriteLine("Введите количество чисел");
+			var n = Convert.ToInt32(Console.ReadLine());
+			Console.WriteLine($"Вводите {n} целых чисел через ентер");
 
+			var sumOfAbses = 0;
+			var multOfAbses = 1;
+			for (var i = 1; i <= n; i++) // как обычно называют переменную в счётчике?
+			{
+				var enteredNumber = Math.Abs(Convert.ToInt32(Console.ReadLine()));
+				sumOfAbses += enteredNumber;
+				multOfAbses *= enteredNumber;
+				var previousNumber = enteredNumber;
+			}
+			Console.WriteLine($"Сумма модулей введёных чисел = {sumOfAbses}, произведение модулей = {multOfAbses}");
 		}
 
 		#endregion
@@ -198,28 +237,43 @@ namespace Lesson2
 		/// каждый следующий равен сумме двух предыдущих (1, 1, 2, 3, 5, 8, 13, …).
 		/// Дано натуральное число n (n > 3).
 		///а) Найти k-й член последовательности Фибоначчи.
-		///б) Получить первые n членов последовательности Фибоначчи.
+		///б) Получить первые n членов последовательности Фибоначчи. ??? как вывести первые 2 один раз? 
 		///в) Верно ли, что сумма первых n членов последовательности Фибоначчи есть четное число?
 		/// </summary>
 		public static void Func9()
 		{
 			//f(An)=An-2+An-1;
+			// считаю, что n = k, чтобы не делать 2 цикла
 
 			Console.WriteLine("Какой член последовательности ищем?");
 			var k = Convert.ToInt32(Console.ReadLine());
 
-			var current = 0;
-			var previous = 1;
-			var prePrevious = 1;
+			long current = 0;
+			long previous = 1;
+			long prePrevious = 1;
+			long sum = 2;
 
-			for(var i = 3; i <= k; i++)
-            {
+			Console.Write("1й = 1; 2й = 1;");
+			for (var i = 3; i <= k; i++)
+			{
 				current = previous + prePrevious;
 
 				prePrevious = previous;
 				previous = current;
+				sum += current;
+				Console.Write($" {i}й = {current};");
 			}
-			Console.WriteLine($"k-й: {current}");
+			Console.WriteLine($"\n{k}-й член последовательности: {current}");
+
+			Console.WriteLine(sum);
+			if (sum % 2 == 0)
+			{
+				Console.WriteLine($"сумма первых {k} членов последовательности Фибоначчи - четное число");
+			}
+			else
+			{
+				Console.WriteLine($"сумма первых {k} членов последовательности Фибоначчи не является четным числом");
+			}
 		}
 
 		/// <summary>
@@ -228,6 +282,17 @@ namespace Lesson2
 		/// </summary>
 		public static void Func10()
 		{
+			Console.WriteLine("Сколько часов у амёбы на деление?");
+			var n = Convert.ToInt32(Console.ReadLine());
+
+			var numberOfAmebs1 = 1 * Math.Pow(2, (n / 3));
+
+			var numberOfAmebs2 = 1;
+			for (var hours = 1; hours <= (n / 3); hours++)
+			{
+				numberOfAmebs2 *= 2;
+			}
+			Console.WriteLine($"Количество амёб 1 = {numberOfAmebs2}; количество 2 ={numberOfAmebs2}");
 
 		}
 
@@ -240,7 +305,15 @@ namespace Lesson2
 		/// </summary>
 		public static void Func12()
 		{
+			Console.WriteLine("Факториал какого числа ищем?");
+			var n = Convert.ToInt32(Console.ReadLine());
 
+			var factorial = 1;
+			for (var i = 1; i <= n; i++)
+			{
+				factorial *= i;
+			}
+			Console.WriteLine($"Факториал числа {n} = {factorial}");
 		}
 
 		/// <summary>
@@ -250,8 +323,21 @@ namespace Lesson2
 		/// </summary>
 		public static void Func13()
 		{
-			//TODO: Сделать красиво с использованием функций
+			Console.WriteLine("До факториала какого числа <10 будем складывать?");
+			var n = Convert.ToInt32(Console.ReadLine());
+
+			var factorial = 1;
+			var sum = 0;
+			for (var i = 1; i <= n; i++)
+			{
+				factorial *= i;
+				sum += factorial;
+			}
+			Console.WriteLine($"Сумма {n} факториалов равно {sum}");
+
 		}
+		//TODO: Сделать красиво с использованием функций
+
 
 		/// <summary>
 		/// Дано число любой степени. Выяснить, является ли оно палиндромом, т. е. таким числом,
@@ -259,7 +345,30 @@ namespace Lesson2
 		/// </summary>
 		public static void Func14()
 		{
-			//TODO: После прохождения массивов сделать без составления нового числа
+			Console.WriteLine("Введите число n");
+			var n = Convert.ToInt32(Console.ReadLine());
+
+			var numberOfDischarges = (int)Math.Log10(n);
+
+			//589
+			var newNumber = 0;
+			var newDischarge = numberOfDischarges;
+			for (var i = 1; i <= numberOfDischarges + 1; i++)
+			{
+				var currentDischrge = (int)(n % Math.Pow(10, i) / Math.Pow(10, i - 1));//985
+				newNumber += currentDischrge * (int)Math.Pow(10, newDischarge);//985
+				newDischarge--;//10
+			}
+			if (n == newNumber)
+			{
+				Console.WriteLine($"Число {n} является палиндромом");
+			}
+			else
+			{
+				Console.WriteLine($"Число {n} НЕ является палиндромом");
+			}
+
+			// Console.WriteLine($"nomberOfDischarges = {nomberOfDischarges};\n newNumber = {newNumber} ");
 		}
 
 		/// <summary>
@@ -285,14 +394,14 @@ namespace Lesson2
 			//258 % 10^2 / 10^1 - 5
 			//258 % 10^1 / 10^0 - 8
 			var isDigitExists = false;
-			for(var currentDegree = 0; currentDegree <= degree; currentDegree++)
-            {
+			for (var currentDegree = 0; currentDegree <= degree; currentDegree++)
+			{
 				var discharge = (int)(number % Math.Pow(10, currentDegree + 1)) / (int)Math.Pow(10, currentDegree);
 				if (discharge == digit)
-                {
+				{
 					isDigitExists = true;
 					break;
-                }
+				}
 			}
 
 			Console.WriteLine($"Цифра {digit} {(isDigitExists ? "" : "не")} входит в число {number}");
@@ -304,18 +413,54 @@ namespace Lesson2
 		/// 2) Сумму всех цифр, стоящих в нечетной степени
 		/// 3) Сумму кубов цифр, стоящих в нечетной степени с разностью квадратов цифр, стоящих в четной степени 
 		/// </summary>
+		/// 123456 => 1^3-2^2+3^3-4^2
 		public static void Func16()
 		{
+			Console.WriteLine("Введите число n");
+			var n = Convert.ToInt32(Console.ReadLine());
 
+			var numberOfDischarges = (int)Math.Log10(n);
+
+			var sumOfDigits = 0;
+			var sumOfOddDigits = 0;
+
+			for (var currentDischarge = 1; currentDischarge <= numberOfDischarges + 1; currentDischarge++)
+			{
+				var currentDischrge = (int)(n % Math.Pow(10, currentDischarge) / Math.Pow(10, currentDischarge - 1));
+				sumOfDigits += currentDischrge;
+				if (currentDischarge % 2 != 0)
+				{
+					sumOfOddDigits += currentDischrge;
+				}
+			}
+			Console.WriteLine($"1) Сумма цифр = {sumOfDigits};\n2) Сумма нечётных цифр = {sumOfOddDigits}");
 		}
 
 		/// <summary>
 		/// Напечатать таблицу истинности, заменив true и false на 1 и 0 соотвественно
 		/// X || !Y && !(X || !Z)
 		/// </summary>
+		/// 0 0 0
+		/// 0 0 1
+		/// 0 1 0 
+		/// 0 1 1 
+		/// 1 0 0
+		/// 1 0 1
+		/// 1 1 0
+		/// 1 1 1
 		public static void Func17()
 		{
+			bool x, y, z, res;
 
+			for (var i = 1; i <= 8; i++)
+			{
+				x = i > 4;
+				y = i == 3 || i == 4 || i == 7 || i == 8;
+				z = i % 2 == 0;
+				res = x || !y && !(x || !z);
+
+				Console.WriteLine($"{(x ? 1 : 0)} {(y ? 1 : 0)} {(z ? 1 : 0)} {(res ? 1 : 0)}");
+			}
 		}
 
 		#endregion
@@ -334,7 +479,7 @@ namespace Lesson2
 			var number = 1;
 			var couter = 0;
 			var sum = 0;
-			while(number != 0)
+			while (number != 0)
 			{
 				number = Convert.ToInt32(Console.ReadLine());
 				sum += number;
@@ -358,17 +503,17 @@ namespace Lesson2
 			var k = 2;
 			var sum = 2;
 
-			while(current <= n) //1 1 2 3 5 8 13 21
+			while (current <= n) //1 1 2 3 5 8 13 21
 			{
 				current = previous + prePrevious;// 2 + 3
 
 				prePrevious = previous;
 				previous = current;
 				k++; //4 5
-				
+
 				sum += current; //2 + 2 + 3 + 5
 			}
-			if(n == prePrevious)
+			if (n == prePrevious)
 			{
 				sum -= (prePrevious + previous);
 			}
@@ -384,7 +529,17 @@ namespace Lesson2
 		/// </summary>
 		public static void Func20()
 		{
+			Console.WriteLine("Введите число n и делитель k");
+			var n = Convert.ToInt32(Console.ReadLine());
+			var k = Convert.ToInt32(Console.ReadLine());
 
+			var newNomber = n;
+			while (newNomber % k != 0)
+			{
+				newNomber++;
+			}
+
+			Console.WriteLine($"Минимальное число, большее n, которое нацело делится на k = {newNomber}");
 		}
 
 		/// <summary>
@@ -399,7 +554,7 @@ namespace Lesson2
 			Console.WriteLine("Какая сумма вклада");
 			var amout = Convert.ToDecimal(Console.ReadLine());
 			Console.WriteLine("Какой процент");
-			var percentage  = Convert.ToDecimal(Console.ReadLine());
+			var percentage = Convert.ToDecimal(Console.ReadLine());
 			Console.WriteLine("Количество месяцев");
 			var n = Convert.ToInt32(Console.ReadLine());
 			Console.WriteLine("Желаемая сумма");
@@ -429,7 +584,7 @@ namespace Lesson2
 			var n = Convert.ToInt64(Console.ReadLine());
 			var counter = 0;
 
-			while(n != 0)
+			while (n != 0)
 			{
 				n /= 10;
 				counter++;
