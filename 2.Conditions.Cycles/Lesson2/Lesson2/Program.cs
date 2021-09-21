@@ -6,7 +6,7 @@ namespace Lesson2
 	{
 		static void Main(string[] args)
 		{
-			Cycles.Func25();
+			Cycles.Func24();
 		}
 
 

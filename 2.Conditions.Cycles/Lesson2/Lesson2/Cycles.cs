@@ -659,15 +659,27 @@ namespace Lesson2
 		/// </summary>
 		public static void Func21()
 		{
-			for (var i = 1; i <= 5; i++)
+			//for (var i = 1; i <= 5; i++)
+			//{
+			//	for (var j = 1; j <= i; j++)
+			//	{
+			//		Console.Write($"{i} ");
+			//	}
+			//	Console.WriteLine();
+			//}
+
+
+			for (var i = 19; i >= 15; i--)
 			{
-				for (var j = 1; j <= i; j++)
+				for (var j = 1; j <= i - 14; j++)
 				{
-					Console.Write($"{i} ");
+					Console.Write($"{i + j} ");
 				}
 				Console.WriteLine();
 			}
 		}
+
+
 
 		/// <summary>
 		/// Составить программу для графического изображения делимости чисел от 1 до n (значение n вводится с клавиатуры).
@@ -680,15 +692,70 @@ namespace Lesson2
 		/// </summary>
 		public static void Func26_2()
 		{
+			Console.WriteLine("Введите число n");
+			var n = Convert.ToInt32(Console.ReadLine());
 
+			for (var number = 1; number <= n; number++)
+			{
+				Console.Write(number);
+				for (var divider = 1; divider <= number / 2; divider++) // можно ли сократить количество операций всё не сломав?
+				{
+					if (number % divider == 0)
+					{
+						Console.Write("+");
+					}
+				}
+				Console.Write("+");
+				Console.WriteLine();
+			}
 		}
 
+
+
 		/// <summary>
-		/// Даны натуральные числа m и n. Вычислить 1^n + 2^n + … + m^n, не используя Math.Pow()
+		/// Даны целые числа m и n. Вычислить 1^n + 2^n + … + m^n, не используя Math.Pow()
 		/// </summary>
 		public static void Func27()
 		{
+			Console.WriteLine("Введите степень n и количество чисел m");
+			var n = Convert.ToInt32(Console.ReadLine());
+			var m = Convert.ToInt32(Console.ReadLine());
 
+
+			double sum = 0;
+			double numberInPower = 1;
+
+			if (n == 0)
+			{
+				sum = m;
+				Console.WriteLine($" Сумма равна {sum}");
+			}
+			else if (n < 0)
+			{
+				for (var i = 1; i <= m; i++)
+				{
+					for (var j = -1; j >= n; j--)
+					{
+						numberInPower /= i;
+					}
+					sum += numberInPower;
+					numberInPower = 1;
+				}
+				Console.WriteLine($" Сумма равна {sum}");
+			}
+			else
+			{
+				for (var i = 1; i <= m; i++)
+				{
+					for (var j = 1; j <= n; j++)
+					{
+						numberInPower *= i;
+					}
+					sum += numberInPower;
+					numberInPower = 1;
+				}
+				Console.WriteLine($" Сумма равна {sum}");
+			}
 		}
 
 
@@ -701,7 +768,14 @@ namespace Lesson2
 		/// </summary>
 		public static void Func22()
 		{
-
+			for (var i = 1; i <= 9; i++)
+			{
+				for (var j = 1; j <= 9; j++)
+				{
+					Console.Write($"{j} * {i} = {j * i}\t");
+				}
+				Console.WriteLine();
+			}
 		}
 
 		/// <summary>
@@ -736,7 +810,23 @@ namespace Lesson2
 		/// </summary>
 		public static void Func24()
 		{
+			Console.WriteLine("Какая площадь s");
+			var s = Convert.ToInt32(Console.ReadLine());
 
+			Console.WriteLine("Возможны прямоугольники со сторонами:");
+			var numberOfRectangles = 0;
+			for (var i = 1; i <= s; i++)
+			{
+				for (var j = s; j >= 1; j--)
+				{
+					if (s == (i * j))
+					{
+						Console.WriteLine($"{i} на {j};");
+						numberOfRectangles++;
+					}
+				}
+			}
+			Console.WriteLine($"Всего {numberOfRectangles} варианта прямоугольников");
 		}
 
 		/// <summary>
@@ -750,9 +840,9 @@ namespace Lesson2
 		{
 			Console.WriteLine("Введите число");
 			var number = Convert.ToUInt64(Console.ReadLine());
-			
+
 			var result = 0;
-						
+
 			while (true)
 			{
 				var numberOfDischarges = (int)Math.Log10(number);
@@ -769,9 +859,9 @@ namespace Lesson2
 				result = 0;
 			}
 			Console.WriteLine($"Цифровой корнь числа {result}");
-			
+
 		}
-		
+
 
 		#endregion
 
@@ -782,7 +872,23 @@ namespace Lesson2
 		/// </summary>
 		public static void Exercise1()
 		{
+			Console.WriteLine("Введите натуральное n");
+			var n = Convert.ToInt32(Console.ReadLine());
 
+			double currentTerm = 0;
+			double previousTerm = 0;
+			double denominator1 = 1;
+			double denominator2 = 1;
+			for (var i = 1; i <= n; i++)
+			{
+				currentTerm += 1 / (denominator1 *= 2) + 1 / (denominator2 *= 3);
+				if ((int)currentTerm*1000 - (int)previousTerm*1000 < 1) //5.0009 -> 5.0011 -> 5.0012
+					break;
+				previousTerm = currentTerm;
+
+
+			}
+			Console.WriteLine($"Сумма = {currentTerm}");
 		}
 
 		/// <summary>
@@ -790,7 +896,30 @@ namespace Lesson2
 		/// </summary>
 		public static void Exercise2()
 		{
+			Console.WriteLine("Введите целое n");
+			var n = Convert.ToInt32(Console.ReadLine());
 
+			double q = 0;
+			if (n > 1)
+			{
+				for (var i = 1; i <= n; i++)
+				{
+					q += 1 + 1.0 / (i * i);
+				}
+				Console.WriteLine($"Q = {q}");
+			}
+			else if (n == 0)
+			{
+				Console.WriteLine("На 0 делить незя вообще-то");
+			}
+			else
+			{
+				for (var i = n; i <= -1; i++)
+				{
+					q += 1 + (i * i);
+				}
+				Console.WriteLine($"Q = {q}");
+			}
 		}
 
 		/// <summary>
