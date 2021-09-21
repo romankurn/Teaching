@@ -1,11 +1,42 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
+using System.Linq;
 
 namespace Lesson2
 {
 	public class Arrays
 	{
+		#region Description
+
+		public static void Description()
+		{
+			//type[] var_name = new type[length];
+			int[] array1 = new int[5];
+			var array1_2 = new int[5]; // {0,0,0,0,0}
+			var array1_3 = new int[5] { 1, 2, 3, 4, 5 };
+			var array1_4 = new int[] { 1, 2, 3, 4, 5 };
+			var array1_5 = new[] { 1, 2, 3, 4, 5 };
+			int[] array1_6 = { 1, 2, 3, 4, 5 };
+
+
+			for (var index = 0; index < array1.Length; index++)
+			{
+				array1[index] = index + 1;
+			}
+
+			for (var index = 0; index < array1.Length; index++)
+			{
+				Console.Write($"{array1[index]} ");
+			}
+
+			foreach (var element in array1)
+			{
+				Console.Write($"{element} ");
+			}
+		}
+
+		#endregion
+
 		#region Одномерные массивы
 
 		/// <summary>
@@ -16,9 +47,24 @@ namespace Lesson2
 		/// <returns></returns>
 		public static TArray[] ConvertStringToArray<TArray>(string line)
 		{
-			var jarray = $"[{line.Replace(" ", ",")}]";
+			var jarray = line.Split(" ");
 
-			return JsonConvert.DeserializeObject<TArray[]>(jarray);
+			try
+			{
+				return JsonConvert.DeserializeObject<TArray[]>($"[{string.Join(",", jarray.Select(a => a))}]");
+			}
+			catch (Exception e)
+			{
+				return JsonConvert.DeserializeObject<TArray[]>($"[{string.Join(",", jarray.Select(a => $"\"{a}\""))}]");
+			}
+		}
+
+		public static void PrintArray<TArray>(TArray[] array)
+		{
+			foreach(var element in array)
+			{
+				Console.Write($"{element} ");
+			}
 		}
 
 		#region Вывод
@@ -28,7 +74,17 @@ namespace Lesson2
 		/// </summary>
 		public static void Func1()
 		{
+			var arrayOfInt = ConvertStringToArray<int>(Console.ReadLine());
 
+			foreach (var element in arrayOfInt)
+			{
+				Console.Write($"{element} ");
+			}
+
+			for (var index = 0; index < arrayOfInt.Length; index++)
+			{
+				Console.Write($"{arrayOfInt[index]} ");
+			}
 		}
 
 		/// <summary>
@@ -36,7 +92,12 @@ namespace Lesson2
 		/// </summary>
 		public static void Func2()
 		{
+			var arrayOfInt = ConvertStringToArray<int>(Console.ReadLine());
 
+			for (var index = arrayOfInt.Length - 1; index >= 0; index--)
+			{
+				Console.Write($"{arrayOfInt[index]} ");
+			}
 		}
 
 		/// <summary>
@@ -44,7 +105,25 @@ namespace Lesson2
 		/// </summary>
 		public static void Func3()
 		{
+			var arrayOfInt = ConvertStringToArray<int>(Console.ReadLine());
 
+			for (var index = 0; index < arrayOfInt.Length; index += 2)
+			{
+				Console.Write($"{arrayOfInt[index]} ");
+			}
+
+			Console.WriteLine();
+
+			var i = 0;
+			foreach (var element in arrayOfInt) //[1,2,3,4,5]
+			{
+				if (i++ % 2 == 0)
+				{
+					Console.Write($"{element} ");
+				}
+				else
+					continue;
+			}
 		}
 
 		/// <summary>
@@ -63,19 +142,82 @@ namespace Lesson2
 		/// В массив добавляется элемент в конец
 		/// </summary>
 		public static void Func5()
-		{ }
+		{
+			Console.WriteLine("Enter elements");
+
+			var initialArray = ConvertStringToArray<string>(Console.ReadLine());
+			var newArray = new string[initialArray.Length + 1];
+
+			Console.WriteLine("Enter new element");
+			var newElement = Console.ReadLine();
+
+			for (var i = 0; i < initialArray.Length; i++)
+			{
+				newArray[i] = initialArray[i];
+			}
+			newArray[initialArray.Length] = newElement;
+
+			PrintArray(newArray);
+		}
 
 		/// <summary>
 		/// В массив добавляется элемент в начало
 		/// </summary>
 		public static void Func6()
-		{ }
+		{
+			Console.WriteLine("Enter elements");
+
+			var initialArray = ConvertStringToArray<string>(Console.ReadLine());
+			var newArray = new string[initialArray.Length + 1];
+
+			Console.WriteLine("Enter new element");
+			var newElement = Console.ReadLine();
+
+			for (var i = 0; i < initialArray.Length; i++)
+			{
+				newArray[i+1] = initialArray[i];
+			}
+			newArray[0] = newElement;
+
+			PrintArray(newArray);
+		}
 
 		/// <summary>
 		/// В массив добавляется элемент в позицию k
 		/// </summary>
 		public static void Func7()
-		{ }
+		{
+			Console.WriteLine("Enter elements");
+
+			var initialArray = ConvertStringToArray<string>(Console.ReadLine());
+			var newArray = new string[initialArray.Length + 1];
+
+			Console.WriteLine("Enter new element");
+			var newElement = Console.ReadLine();
+
+			Console.WriteLine($"Enter k[0; {initialArray.Length}]");
+			var k = Convert.ToInt32(Console.ReadLine());
+
+			for (var i = 0; i < k; i++)
+			{
+				newArray[i] = initialArray[i];
+			}
+			newArray[k] = newElement;
+			for (var i = k; i < initialArray.Length; i++)
+			{
+				newArray[i + 1] = initialArray[i];
+			}
+
+			PrintArray(newArray);
+		}
+
+		/// <summary>
+		/// В массив добавляется n элементов в позицию k
+		/// </summary>
+		public static void Func7_2()
+		{
+			//[0 1 2 3 4] // a b c -> [0 1 2 a b c 3 4]
+		}
 
 		#endregion
 
@@ -85,7 +227,19 @@ namespace Lesson2
 		/// Из массива удаляется элемент с конца
 		/// </summary>
 		public static void Func8()
-		{ }
+		{
+			Console.WriteLine("Enter elements");
+
+			var initialArray = ConvertStringToArray<int>(Console.ReadLine());
+			var newArray = new int[initialArray.Length - 1];
+
+			for (var i = 0; i < initialArray.Length - 1; i++)
+			{
+				newArray[i] = initialArray[i];
+			}
+			
+			PrintArray(newArray);
+		}
 
 		/// <summary>
 		/// Из массива удаляется элемент с начала
@@ -97,6 +251,31 @@ namespace Lesson2
 		/// Из массива удаляется элемент с позиции k
 		/// </summary>
 		public static void Func10()
+		{
+			Console.WriteLine("Enter elements");
+
+			var initialArray = ConvertStringToArray<string>(Console.ReadLine());
+			var newArray = new string[initialArray.Length - 1];
+						
+			Console.WriteLine($"Enter k[0; {initialArray.Length - 1}]"); // [0 1 2 3 4]
+			var k = Convert.ToInt32(Console.ReadLine());
+
+			for (var i = 0; i < k; i++)
+			{
+				newArray[i] = initialArray[i];
+			}
+			for (var i = k+1; i < initialArray.Length; i++)
+			{
+				newArray[i-1] = initialArray[i];
+			}
+
+			PrintArray(newArray);
+		}
+
+		/// <summary>
+		/// Из массива удаляется n элементов с позиции k
+		/// </summary>
+		public static void Func10_2()
 		{ }
 
 		#endregion
