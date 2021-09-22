@@ -61,7 +61,7 @@ namespace Lesson2
 
 		public static void PrintArray<TArray>(TArray[] array)
 		{
-			foreach(var element in array)
+			foreach (var element in array)
 			{
 				Console.Write($"{element} ");
 			}
@@ -131,7 +131,18 @@ namespace Lesson2
 		/// </summary>
 		public static void Func4()
 		{
+			Console.WriteLine("Enter elements");
+			var initialArray = ConvertStringToArray<int>(Console.ReadLine());
 
+			foreach (var element in initialArray)
+			{
+				if (element != -1)
+				{
+					Console.Write($"{element} ");
+				}
+				else
+					break;
+			}
 		}
 
 		#endregion
@@ -175,7 +186,7 @@ namespace Lesson2
 
 			for (var i = 0; i < initialArray.Length; i++)
 			{
-				newArray[i+1] = initialArray[i];
+				newArray[i + 1] = initialArray[i];
 			}
 			newArray[0] = newElement;
 
@@ -214,9 +225,33 @@ namespace Lesson2
 		/// <summary>
 		/// В массив добавляется n элементов в позицию k
 		/// </summary>
-		public static void Func7_2()
+		public static void Func7_2() // как задавать массивы (форматы выносят мозг)?
 		{
-			//[0 1 2 3 4] // a b c -> [0 1 2 a b c 3 4]
+			Console.WriteLine("Enter elements");
+			var initialArray = ConvertStringToArray<string>(Console.ReadLine());
+
+			Console.WriteLine("Enter new elements");
+			var addedArray = ConvertStringToArray<string>(Console.ReadLine());
+
+			var newArray = new string[initialArray.Length + addedArray.Length];
+
+			Console.WriteLine($"Enter k[0; {initialArray.Length}]");
+			var k = Convert.ToInt32(Console.ReadLine());
+
+			for (var i = 0; i < k; i++)
+			{
+				newArray[i] = initialArray[i];
+			}
+			for (var i = k; i < k + addedArray.Length; i++)
+			{
+				newArray[i] = addedArray[i - k]; // почему нельзя засандалить инкремент в номер элемента?
+			}
+			for (var i = k + addedArray.Length; i < initialArray.Length + addedArray.Length; i++)
+			{
+				newArray[i] = initialArray[i - addedArray.Length];
+			}
+
+			PrintArray(newArray);
 		}
 
 		#endregion
@@ -237,7 +272,7 @@ namespace Lesson2
 			{
 				newArray[i] = initialArray[i];
 			}
-			
+
 			PrintArray(newArray);
 		}
 
@@ -245,7 +280,19 @@ namespace Lesson2
 		/// Из массива удаляется элемент с начала
 		/// </summary>
 		public static void Func9()
-		{ }
+		{
+			Console.WriteLine("Enter elements");
+
+			var initialArray = ConvertStringToArray<int>(Console.ReadLine());
+			var newArray = new int[initialArray.Length - 1];
+
+			for (var i = 0; i < initialArray.Length - 1; i++)
+			{
+				newArray[i] = initialArray[i + 1];
+			}
+
+			PrintArray(newArray);
+		}
 
 		/// <summary>
 		/// Из массива удаляется элемент с позиции k
@@ -256,7 +303,7 @@ namespace Lesson2
 
 			var initialArray = ConvertStringToArray<string>(Console.ReadLine());
 			var newArray = new string[initialArray.Length - 1];
-						
+
 			Console.WriteLine($"Enter k[0; {initialArray.Length - 1}]"); // [0 1 2 3 4]
 			var k = Convert.ToInt32(Console.ReadLine());
 
@@ -264,9 +311,9 @@ namespace Lesson2
 			{
 				newArray[i] = initialArray[i];
 			}
-			for (var i = k+1; i < initialArray.Length; i++)
+			for (var i = k + 1; i < initialArray.Length; i++)
 			{
-				newArray[i-1] = initialArray[i];
+				newArray[i - 1] = initialArray[i];
 			}
 
 			PrintArray(newArray);
@@ -276,7 +323,30 @@ namespace Lesson2
 		/// Из массива удаляется n элементов с позиции k
 		/// </summary>
 		public static void Func10_2()
-		{ }
+		{
+			Console.WriteLine("Enter elements");
+			var initialArray = ConvertStringToArray<string>(Console.ReadLine());
+
+			Console.WriteLine($"Сколько убраить элементов - n[1,{initialArray.Length}]");
+			var n = Convert.ToInt32(Console.ReadLine()); // [0 1 2 3]
+
+			var newArray = new string[initialArray.Length - n];
+
+			Console.WriteLine($"С какой позиции убирать -  k[0; {initialArray.Length-n}]");
+			var k = Convert.ToInt32(Console.ReadLine());
+
+			for (var i = 0; i < k; i++)
+			{
+				newArray[i] = initialArray[i];
+			}
+			
+			for (var i = k + n; i < initialArray.Length; i++)
+			{
+				newArray[i-n] = initialArray[i];
+			}
+
+			PrintArray(newArray);
+		}
 
 		#endregion
 
