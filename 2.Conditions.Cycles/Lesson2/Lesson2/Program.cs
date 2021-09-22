@@ -6,7 +6,7 @@ namespace Lesson2
 	{
 		static void Main(string[] args)
 		{
-			Arrays.Func10_2();
+			Arrays.Func23();
 		}
 
 

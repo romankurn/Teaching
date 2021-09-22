@@ -332,17 +332,17 @@ namespace Lesson2
 
 			var newArray = new string[initialArray.Length - n];
 
-			Console.WriteLine($"С какой позиции убирать -  k[0; {initialArray.Length-n}]");
+			Console.WriteLine($"С какой позиции убирать -  k[0; {initialArray.Length - n}]");
 			var k = Convert.ToInt32(Console.ReadLine());
 
 			for (var i = 0; i < k; i++)
 			{
 				newArray[i] = initialArray[i];
 			}
-			
+
 			for (var i = k + n; i < initialArray.Length; i++)
 			{
-				newArray[i-n] = initialArray[i];
+				newArray[i - n] = initialArray[i];
 			}
 
 			PrintArray(newArray);
@@ -358,7 +358,31 @@ namespace Lesson2
 		/// </summary>
 		public static void Func14FromCycles()
 		{
-			//сделать без составления нового числа
+			Console.WriteLine("Введите число n");
+			var n = Convert.ToInt32(Console.ReadLine());
+
+			var numberOfDischarges = (int)Math.Log10(n);
+			var arrayOfDigits = new int[numberOfDischarges + 1];
+
+			//589
+			var newDischarge = numberOfDischarges;
+			for (var i = 1; i <= numberOfDischarges + 1; i++)
+			{
+				var currentDischrge = (int)(n % Math.Pow(10, i) / Math.Pow(10, i - 1));//985
+				arrayOfDigits[i - 1] = currentDischrge;
+			}
+
+			var result = true;
+			//[0 1 2 3 4 5 6 7] 0-7 1-6 2-5 3-4
+			for (var i = 0; i < arrayOfDigits.Length / 2; i++)
+			{
+				if (arrayOfDigits[i] != arrayOfDigits[arrayOfDigits.Length - i - 1])
+				{
+					result = false;
+					break;
+				}
+			}
+			Console.WriteLine($"Число {n} {(!result ? "не " : " ")}является палиндромом");
 		}
 
 		/// <summary>
@@ -377,36 +401,108 @@ namespace Lesson2
 		/// Заменить все элементы массива суммой соседних элементов.
 		/// Например [1,5,3,8,5,2,-9,100,0] -> [5,4,13,8,10,-4,102,-9,100]
 		/// </summary>
-		public static void Func14()
+		public static void Func14() //hw
 		{ }
 
 		/// <summary>
 		/// Найти минимальный и максимальный элемент массива
 		/// </summary>
 		public static void Func15()
-		{ }
+		{
+			Console.WriteLine($"Введите набор значений");
+			var array = ConvertStringToArray<int>(Console.ReadLine());
+			//[1 6 2 0 8 1 8 2 9 15 2 8]
+
+			var max = array[0];
+			var min = array[0];
+			for (var i = 1; i < array.Length; i++)
+			{
+				if (array[i] > max)
+				{
+					max = array[i];
+				}
+				if (array[i] < min)
+				{
+					min = array[i];
+				}
+			}
+
+			Console.WriteLine($"Max = {max}\nMin = {min}");
+
+			max = array.Max();
+			min = array.Min();
+		}
 
 		/// <summary>
 		/// Сортировка массива по возрастанию/убыванию
 		/// </summary>
 		public static void Func16()
-		{ }
+		{
+			Console.WriteLine("Enter elements");
+			var initialArray = ConvertStringToArray<int>(Console.ReadLine());
+
+			// возрастание
+			var transit = 0;
+			for (var i = 0; i < initialArray.Length - 1; i++)
+			{
+				for (var j = i + 1; j < initialArray.Length; j++)
+				{
+					if (initialArray[i] > initialArray[j])
+					{
+						transit = initialArray[j];
+						initialArray[j] = initialArray[i];
+						initialArray[i] = transit;
+					}
+				}
+			}
+			PrintArray(initialArray);
+			Console.WriteLine();
+
+			Array.Sort(initialArray);
+			initialArray = initialArray.Reverse().ToArray();
+
+			PrintArray(initialArray);
+		}
 
 		/// <summary>
 		/// Посчитать количество повторяющихся элементов в массиве
 		/// [1,2,3,5,1,2,6,7,5,1] -> 3: 1,2,5
 		/// </summary>
 		public static void Func17()
-		{ }
+		{
+			Console.WriteLine("Enter elements");
+			var initialArray = ConvertStringToArray<int>(Console.ReadLine());
+
+			var newArray = new int[initialArray.Length / 2];
+			Array.Sort(initialArray);
+			var counter = 0;
+			for (var i = 0; i < initialArray.Length - 1; i++)
+			{
+				if (initialArray[i] == initialArray[i + 1]) // [1 1 1 1 2 3 3 4 5 5 8]
+				{
+					newArray[counter++] = initialArray[i];
+				}
+				while (initialArray[i] == initialArray[i + 1])
+				{
+					i++;
+				}
+			}
+			var repeatedArray = newArray.Take(counter).ToArray();
+			Console.Write($"{counter}: ");
+			PrintArray(repeatedArray);
+		}
 
 		/// <summary>
 		/// Посчитать количество уникальных элементов в массиве
 		/// </summary>
-		public static void Func22()
-		{ }
+		public static void Func22() //hw
+		{
+
+		}
 
 		/// <summary>
-		/// Создание массива из двух массивов. В итоговом массиве должны быть элементы первого и второго массива
+		/// Создание массива из двух массивов. 
+		/// В итоговом массиве должны быть элементы первого и второго массива
 		/// </summary>
 		public static void Func18()
 		{
@@ -416,11 +512,42 @@ namespace Lesson2
 		/// <summary>
 		/// Даны 2 массива. Найти в первом массиве первое число, которое встречается во втором массиве.
 		/// Если такого числа нет, выдать сообщение
+		/// [1 2 3 4 5] [10 11 12 5 4 3 ] -> 3
 		/// </summary>
 		public static void Func19()
 		{
+			Console.WriteLine("Enter elements for firstArray");
+			var firstArray = ConvertStringToArray<int>(Console.ReadLine());
 
+			Console.WriteLine("Enter elements for secondArray");
+			var secondArray = ConvertStringToArray<int>(Console.ReadLine());
+
+			var common = 0;
+			var found = false;
+			for (var i = 0; i < firstArray.Length; i++)
+			{
+				for (var j = 0; j < secondArray.Length; j++)
+				{
+					if (firstArray[i] == secondArray[j])
+					{
+						common = firstArray[i];
+						found = true;
+						break;
+					}
+				}
+				if (found)
+					break;
+			}
+			if (!found)
+			{
+				Console.WriteLine("Not found");
+			}
+			else
+			{
+				Console.WriteLine(common);
+			}
 		}
+
 
 		/// <summary>
 		/// Даны 2 массива. Создать массив из элементов, которые содержатся как в первом так и во втором массивах.
@@ -435,7 +562,7 @@ namespace Lesson2
 		/// Даны 2 массива. Создать третий, в котором будут не повторяющиеся элементы первого и второго массива.
 		/// [1,2,3,1,2,3], [2,3,4,2,3,4] -> [1,4]
 		/// </summary>
-		public static void Func21()
+		public static void Func21() //hw
 		{
 
 		}
@@ -444,11 +571,58 @@ namespace Lesson2
 		/// Даны 2 массива: массив слов и массив индексов.
 		/// Остортировать первый массив, согласно индексам во втором массиве.
 		/// Проверить массив индексов на корректность
-		/// ["word1","word2","word3"], [3,1,2] -> ["word3","word1","word2"]
+		/// ["word0","word1","word2"], [2,0,1] -> ["word2","word0","word1"]
 		/// </summary>
 		public static void Func23()
 		{
+			Console.WriteLine("Enter elements for firstArray");
+			var wordsArray = ConvertStringToArray<string>(Console.ReadLine());
 
+			Console.WriteLine("Enter elements for secondArray");
+			var indexesArray = ConvertStringToArray<int>(Console.ReadLine());
+
+			#region validation
+			if (indexesArray.Length != wordsArray.Length)
+			{
+				Console.WriteLine("indexes are not valid");
+				return;
+			}
+
+			for (var i = 0; i < indexesArray.Length - 1; i++)
+			{
+				for (var j = i + 1; j < indexesArray.Length; j++)
+				{
+					if (indexesArray[i] == indexesArray[j])
+					{
+						Console.WriteLine("indexes are not valid");
+						return;
+					}
+				}
+			}
+
+			var  sortedIndexesArray = new int[indexesArray.Length];
+			for (var i = 0; i < indexesArray.Length; i++)
+			{
+				sortedIndexesArray[i] = indexesArray[i];
+			}
+
+			Array.Sort(sortedIndexesArray);
+
+			if (sortedIndexesArray[0] != 0 || sortedIndexesArray[indexesArray.Length - 1] != sortedIndexesArray.Length - 1)
+			{
+				Console.WriteLine("indexes are not valid");
+				return;
+			}
+			#endregion
+
+			var modifiedWordArray = new string[wordsArray.Length];
+			//var transit = "";
+			for (var i = 0; i < wordsArray.Length; i++)
+			{
+				modifiedWordArray[i] = wordsArray[indexesArray[i]];
+			}
+
+			PrintArray(modifiedWordArray);
 		}
 
 		/// <summary>
@@ -457,7 +631,7 @@ namespace Lesson2
 		/// 1) По именам по алфавиту
 		/// 2) По возрасту по возрастанию
 		/// </summary>
-		public static void Func24()
+		public static void Func24() //hw
 		{
 
 		}
@@ -468,6 +642,11 @@ namespace Lesson2
 
 
 		#region Обработка строки как массива символов
+
+		/// <summary>
+		/// Дана страка. Выяснить, является ли она палиндромом
+		/// </summary>
+		public static void Func14FromCyclesForString() { }
 
 		/// <summary>
 		/// Посчитать количество цифр в строке.
