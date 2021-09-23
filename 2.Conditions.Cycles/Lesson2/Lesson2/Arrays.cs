@@ -313,7 +313,132 @@ namespace Lesson2
 
 		#region Двумерные массивы - Comming soon...
 
+		/// <summary>
+		/// Заполнить матрицу размера rows*columns рандомными числами от min до max 
+		/// </summary>
+		/// <param name="rows"></param>
+		/// <param name="columns"></param>
+		/// <param name="min"></param>
+		/// <param name="max"></param>
+		/// <returns></returns>
+		public static int[][] CreateMatrix(int rows, int columns, int min, int max)
+		{
 
+		}
+
+		/// <summary>
+		/// Напечатать двумерный массив
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="matrix"></param>
+		public static void PrintMatrix<T>(T[][] matrix)
+		{
+
+		}
+
+		/// <summary>
+		/// Создать двумерный массив вида:
+		/// а)
+		/// 1
+		/// 2 2
+		/// 3 3 3
+		/// 4 4 4 4
+		/// 5 5 5 5 5
+		///
+		/// б)
+		/// 20 21 22 23 24
+		///	19 20 21 22
+		/// 18 19 20
+		/// 17 18
+		/// 16
+		///
+		/// в)
+		/// 1
+		/// 4
+		/// 1 2 3
+		/// 16
+		/// 1 2 3 4 5
+		/// 36
+		/// 1 2 3 4 5 6 7
+		/// 64
+		/// 1 2 3 4 5 6 7 8 9
+		/// 100
+		/// 
+		/// 
+		/// </summary>
+		public static void Func21FromCycles()
+		{
+
+		}
+
+		/// <summary>
+		/// Отсортировать четные столбцы по возрастанию
+		/// нечетные - по убыванию
+		/// </summary>
+		public static void MatrixFunc1()
+		{
+
+		}
+
+		/// <summary>
+		/// Отсортировать все элементы матрицы по возрастанию
+		/// </summary>
+		public static void MatrixFunc2()
+		{
+
+		}
+
+		/// <summary>
+		/// Поменять местами макимальный элемент первой матрицы
+		/// с минимальным элементом второй матрицы
+		/// </summary>
+		public static void MatrixFunc8()
+		{
+
+		}
+
+		/// <summary>
+		/// Поменять местами столбцы с макимальным и минимальным элемантами
+		/// </summary>
+		public static void MatrixFunc7()
+		{
+
+		}
+
+		/// <summary>
+		/// Транспонировать матрицу
+		/// </summary>
+		public static void MatrixFunc3()
+		{
+
+		}
+
+		/// <summary>
+		/// Составить массив из максимальных элементов каждого столбца матрицы
+		/// Получинным массивом заменить строку с минимальным элементом
+		/// </summary>
+		public static void MatrixFunc4()
+		{
+
+		}
+
+		/// <summary>
+		/// Составить массив произведений диагоналей квадратной матрицы нечетной размерности
+		/// Полученным массивом заменить среднюю строку и средний столбец
+		/// </summary>
+		public static void MatrixFunc5()
+		{
+
+		}
+
+		/// <summary>
+		/// Выполнить преобразование над матрицей (см файл)
+		/// в которой размерности кратны 3
+		/// </summary>
+		public static void MatrixFunc6()
+		{
+
+		}
 
 		#endregion
 	}
