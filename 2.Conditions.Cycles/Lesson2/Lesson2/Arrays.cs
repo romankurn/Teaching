@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Lesson2
@@ -389,20 +390,63 @@ namespace Lesson2
 		/// Заменить все элементы на четной позиции числом 2, на нечетной: 1
 		/// </summary>
 		public static void Func11()
-		{ }
+		{
+			Console.WriteLine("Enter elements");
+			var initialArray = ConvertStringToArray<string>(Console.ReadLine());
+
+			for (var i = 0; i < initialArray.Length; i++)
+			{
+				if (i % 2 == 0)
+				{
+					initialArray[i] = "2";
+				}
+				else
+				{
+					initialArray[i] = "1";
+				}
+			}
+			PrintArray(initialArray);
+		}
 
 		/// <summary>
 		/// Заменить все положительные числа цифрой 1, отрицательные: -1
 		/// </summary>
 		public static void Func13()
-		{ }
+		{
+			Console.WriteLine("Enter elements");
+			var initialArray = ConvertStringToArray<int>(Console.ReadLine());
 
+			for (var i = 0; i < initialArray.Length; i++)
+			{
+				if (initialArray[i] >= 0)
+				{
+					initialArray[i] = 1;
+				}
+				else
+				{
+					initialArray[i] = -1;
+				}
+			}
+			PrintArray(initialArray);
+		}
 		/// <summary>
 		/// Заменить все элементы массива суммой соседних элементов.
 		/// Например [1,5,3,8,5,2,-9,100,0] -> [5,4,13,8,10,-4,102,-9,100]
 		/// </summary>
 		public static void Func14() //hw
-		{ }
+		{
+			var sourceArray = new int[] { 1, 5, 3, 8, 5, 2, -9, 100, 0 };
+
+			var modifiedArray = new int[sourceArray.Length];
+			modifiedArray[0] = sourceArray[1];
+			for (var i = 1; i < sourceArray.Length - 1; i++)
+			{
+				modifiedArray[i] = sourceArray[i - 1] + sourceArray[i + 1];
+			}
+			modifiedArray[sourceArray.Length - 1] = sourceArray[sourceArray.Length - 2];
+
+			PrintArray(modifiedArray);
+		}
 
 		/// <summary>
 		/// Найти минимальный и максимальный элемент массива
@@ -497,7 +541,48 @@ namespace Lesson2
 		/// </summary>
 		public static void Func22() //hw
 		{
+			Console.WriteLine("Enter elements");
+			var initialArray = ConvertStringToArray<string>(Console.ReadLine());
 
+			var counter = 0;
+			var elementIsUnique = true;
+			var nonUniqueElements = new string[initialArray.Length / 2];
+			var amountOfnonUniqueElements = 0;
+
+			for (var i = 0; i < initialArray.Length; i++)
+			{
+				for (var k = 0; k < amountOfnonUniqueElements; k++)
+				{
+					if (initialArray[i] == nonUniqueElements[k])
+					{
+						elementIsUnique = false;
+						break;
+					}
+				}
+				if (elementIsUnique == true)
+				{
+					for (var j = i + 1; j < initialArray.Length; j++)
+					{
+						if (initialArray[i] == initialArray[j])
+						{
+							elementIsUnique = false;
+							nonUniqueElements[amountOfnonUniqueElements++] = initialArray[i];
+							break;
+						}
+					}
+				}
+				if (elementIsUnique == true)
+				{
+					counter++;
+				}
+				else
+				{
+					elementIsUnique = true;
+				}
+			}
+			Console.WriteLine($"Number of unique elements is {counter}");
+
+			var uniqueCount = initialArray.Distinct().Count();
 		}
 
 		/// <summary>
@@ -506,7 +591,24 @@ namespace Lesson2
 		/// </summary>
 		public static void Func18()
 		{
+			Console.WriteLine("Enter elements of the first array");
+			var firstArray = ConvertStringToArray<string>(Console.ReadLine());
+			Console.WriteLine("Enter elements of the second array");
+			var secondlArray = ConvertStringToArray<string>(Console.ReadLine());
 
+			var sumOfArrays = new string[firstArray.Length + secondlArray.Length];
+			var nomberOfElements = 0;
+			foreach(var element in firstArray)
+			{
+				sumOfArrays[nomberOfElements++] = element;
+			}
+			foreach(string element in secondlArray)
+			{
+				sumOfArrays[nomberOfElements++] = element;
+			}
+			PrintArray(sumOfArrays);
+
+			var newArray = firstArray.Union(secondlArray).ToArray();
 		}
 
 		/// <summary>
@@ -550,21 +652,149 @@ namespace Lesson2
 
 
 		/// <summary>
-		/// Даны 2 массива. Создать массив из элементов, которые содержатся как в первом так и во втором массивах.
+		/// Даны 2 массива. Создать массив из элементов, которые содержатся как в первом
+		/// так и во втором массивах.
 		/// [1,2,3,1,2,3,4,5], [11,12,13,1,1,2,4,20] -> [1,2,4]
 		/// </summary>
-		public static void Func20()
+		public static void Func20() // не доделан
 		{
+			Console.WriteLine("Enter elements of the first array");
+			var firstArray = ConvertStringToArray<string>(Console.ReadLine());
+			Console.WriteLine("Enter elements of the second array");
+			var secondlArray = ConvertStringToArray<string>(Console.ReadLine());
 
+			var arrayOfCommonElements = new string[Math.Min(firstArray.Length, secondlArray.Length)];
+			var nomberOfCommonElements = 0;
+			var elementIsUnique = true;
+			var verifiedElements = new string[Math.Min(firstArray.Length, secondlArray.Length)];
+			var amountOfVerifiedElements = 0;
+
+			for (var i =0; i < firstArray.Length; i++)
+			{
+				for (var k = 0; k < amountOfVerifiedElements; k++)
+				{
+					if (firstArray[i] == verifiedElements[k])
+					{
+						elementIsUnique = false;
+						break;
+					}
+				}
+				if (elementIsUnique == true)
+				{
+					verifiedElements[amountOfVerifiedElements++] = firstArray[i];
+
+					for (var j = 0; j < secondlArray.Length; j++)
+					{
+						if (firstArray[i] == secondlArray[j])
+						{
+							arrayOfCommonElements[nomberOfCommonElements++] = firstArray[i];
+						}
+					}
+				}
+				else
+				{
+					elementIsUnique = true;
+				}
+			}
+			PrintArray(arrayOfCommonElements);
+
+			var commonElements = new List<string>();
+			commonElements = firstArray.Where(first => secondlArray.Contains(first)).ToList();
 		}
 
 		/// <summary>
 		/// Даны 2 массива. Создать третий, в котором будут не повторяющиеся элементы первого и второго массива.
 		/// [1,2,3,1,2,3], [2,3,4,2,3,4] -> [1,4]
 		/// </summary>
+
+
+		// 0 1 2 1 2 3 a v 54
+		// 1 1 4 2 3 b a a 54 9 8
 		public static void Func21() //hw
 		{
+			Console.WriteLine("Enter elements of the first array");
+			var firstArray = ConvertStringToArray<string>(Console.ReadLine());
+			Console.WriteLine("Enter elements of the second array");
+			var secondlArray = ConvertStringToArray<string>(Console.ReadLine());
 
+			var elementIsUnique = true;
+			var verifiedElements = new string[Math.Max(firstArray.Length, secondlArray.Length)];
+			var amountOfVerifiedElements = 0;
+			var newArray = new string[firstArray.Length + secondlArray.Length];
+			var amountOfUniqueElements = 0;
+
+
+			for (var i = 0; i < firstArray.Length; i++)
+			{
+				for (var k = 0; k < amountOfVerifiedElements; k++)
+				{
+					if (firstArray[i] == verifiedElements[k])
+					{
+						elementIsUnique = false;
+						break;
+					}
+				}
+				if (elementIsUnique == true)
+				{
+					verifiedElements[amountOfVerifiedElements++] = firstArray[i];
+
+					for (var j = 0; j < secondlArray.Length; j++)
+					{
+						if (firstArray[i] == secondlArray[j])
+						{
+							elementIsUnique = false;
+							break;
+						}
+					}
+				}
+				if (elementIsUnique == true)
+				{
+					newArray[amountOfUniqueElements++] = firstArray[i];
+				}
+				else
+				{
+					elementIsUnique = true;
+				}
+			}
+
+			for (var j = 0; j < secondlArray.Length; j++)
+			{
+				for (var k = 0; k < amountOfVerifiedElements; k++)
+				{
+					if (secondlArray[j] == verifiedElements[k])
+					{
+						elementIsUnique = false;
+						break;
+					}
+				}
+				if (elementIsUnique == true)
+				{
+					verifiedElements[amountOfVerifiedElements++] = secondlArray[j];
+
+					for (var i = 0; i < firstArray.Length; i++)
+					{
+						if (secondlArray[j] == firstArray[i])
+						{
+							elementIsUnique = false;
+							break;
+						}
+					}
+				}
+				if (elementIsUnique == true)
+				{
+					newArray[amountOfUniqueElements++] = secondlArray[j];
+				}
+				else
+				{
+					elementIsUnique = true;
+				}
+			}
+
+			PrintArray(newArray);
+
+			var firstUniqueElement = firstArray.Except(secondlArray).ToArray();
+			var secondUniqueElements = secondlArray.Except(firstArray).ToArray();
+			var uniqueElements = firstUniqueElement.Union(secondUniqueElements).ToArray();
 		}
 
 		/// <summary>
@@ -600,7 +830,7 @@ namespace Lesson2
 				}
 			}
 
-			var  sortedIndexesArray = new int[indexesArray.Length];
+			var sortedIndexesArray = new int[indexesArray.Length];
 			for (var i = 0; i < indexesArray.Length; i++)
 			{
 				sortedIndexesArray[i] = indexesArray[i];
@@ -633,7 +863,29 @@ namespace Lesson2
 		/// </summary>
 		public static void Func24() //hw
 		{
+			Console.WriteLine("Enter names");
+			var namesArray = ConvertStringToArray<string>(Console.ReadLine());
+			Console.WriteLine("Enter ages");
+			var agesArray = ConvertStringToArray<int>(Console.ReadLine());
 
+			//O(n) + O(n^2) + O(n^2) + O(n) => 2(n^2+n)
+
+			for (var i = 0; i < namesArray.Length - 1; i++)
+			{
+				for (var j = i+1; j < namesArray.Length; j++)
+				{
+					if (namesArray[i].CompareTo(namesArray[j]) >= 0)
+					{
+						var wordTransit = namesArray[i];
+						namesArray[i] = namesArray[j];
+						namesArray[j] = wordTransit;
+
+						var ageTransit = agesArray[i];
+						agesArray[i] = agesArray[j];
+						agesArray[j] = ageTransit;
+					}
+				}
+			}
 		}
 
 		#endregion
