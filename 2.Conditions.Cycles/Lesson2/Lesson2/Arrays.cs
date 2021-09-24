@@ -598,11 +598,11 @@ namespace Lesson2
 
 			var sumOfArrays = new string[firstArray.Length + secondlArray.Length];
 			var nomberOfElements = 0;
-			foreach(var element in firstArray)
+			foreach (var element in firstArray)
 			{
 				sumOfArrays[nomberOfElements++] = element;
 			}
-			foreach(string element in secondlArray)
+			foreach (string element in secondlArray)
 			{
 				sumOfArrays[nomberOfElements++] = element;
 			}
@@ -669,7 +669,7 @@ namespace Lesson2
 			var verifiedElements = new string[Math.Min(firstArray.Length, secondlArray.Length)];
 			var amountOfVerifiedElements = 0;
 
-			for (var i =0; i < firstArray.Length; i++)
+			for (var i = 0; i < firstArray.Length; i++)
 			{
 				for (var k = 0; k < amountOfVerifiedElements; k++)
 				{
@@ -872,7 +872,7 @@ namespace Lesson2
 
 			for (var i = 0; i < namesArray.Length - 1; i++)
 			{
-				for (var j = i+1; j < namesArray.Length; j++)
+				for (var j = i + 1; j < namesArray.Length; j++)
 				{
 					if (namesArray[i].CompareTo(namesArray[j]) >= 0)
 					{
@@ -993,6 +993,36 @@ namespace Lesson2
 
 		#region Двумерные массивы - Comming soon...
 
+		public void ArrayOfArraysDescription()
+		{
+			int[][] matrix = new int[5][];
+			matrix[0] = new int[3];
+			matrix[1] = new int[1];
+			//..
+			//	..
+			//	..
+			//matrix[row-1] = new int[column];
+
+			var matrix2 = new int[5][];
+
+			int[][] matrix3 = { new[] { 1, 2, 3 }, new[] { 11, 12, 13 } };
+
+			foreach (var row in matrix3)
+			{
+				foreach (var element in row)
+				{
+				}
+			}
+
+			for (var rowIndex = 0; rowIndex < matrix3.Length; rowIndex++)
+			{
+				for (var columnIndex = 0; columnIndex < matrix3[rowIndex].Length; columnIndex++)
+				{
+
+				}
+			}
+		}
+
 		/// <summary>
 		/// Заполнить матрицу размера rows*columns рандомными числами от min до max 
 		/// </summary>
@@ -1003,7 +1033,19 @@ namespace Lesson2
 		/// <returns></returns>
 		public static int[][] CreateMatrix(int rows, int columns, int min, int max)
 		{
+			var random = new Random();
 
+			var matrix = new int[rows][];
+			for (var rowIndex = 0; rowIndex < rows; rowIndex++)
+			{
+				matrix[rowIndex] = new int[columns];
+				for (var columnIndex = 0; columnIndex < matrix[rowIndex].Length; columnIndex++)
+				{
+					matrix[rowIndex][columnIndex] = random.Next(min, max + 1);
+				}
+			}
+
+			return matrix;
 		}
 
 		/// <summary>
@@ -1013,7 +1055,14 @@ namespace Lesson2
 		/// <param name="matrix"></param>
 		public static void PrintMatrix<T>(T[][] matrix)
 		{
-
+			foreach (var row in matrix)
+			{
+				foreach (var element in row)
+				{
+					Console.Write($"{element}\t");
+				}
+				Console.WriteLine();
+			}
 		}
 
 		/// <summary>
@@ -1048,7 +1097,16 @@ namespace Lesson2
 		/// </summary>
 		public static void Func21FromCycles()
 		{
-
+			var matrix = new int[5][];
+			for (var rowIndex = 0; rowIndex < 5; rowIndex++)
+			{
+				matrix[rowIndex] = new int[rowIndex + 1];
+				for (var columnIndex = 0; columnIndex < matrix[rowIndex].Length; columnIndex++)
+				{
+					matrix[rowIndex][columnIndex] = rowIndex + 1;
+				}
+			}
+			PrintMatrix(matrix);
 		}
 
 		/// <summary>
@@ -1057,7 +1115,7 @@ namespace Lesson2
 		/// </summary>
 		public static void MatrixFunc1()
 		{
-
+			
 		}
 
 		/// <summary>
@@ -1065,7 +1123,47 @@ namespace Lesson2
 		/// </summary>
 		public static void MatrixFunc2()
 		{
+			Console.Write("Enter number of rows: ");
+			var numberOfRows = Convert.ToInt32(Console.ReadLine());
+			Console.Write("Enter number of columns: ");
+			var numberOfColumns = Convert.ToInt32(Console.ReadLine());
+			Console.Write("Enter min value: ");
+			var minValue = Convert.ToInt32(Console.ReadLine());
+			Console.Write("Enter max value: ");
+			var maxValue = Convert.ToInt32(Console.ReadLine());
 
+			var matrix = CreateMatrix(numberOfRows, numberOfColumns, minValue, maxValue);
+			var elementCount = 0;
+			var counter = 0;
+
+			foreach (var row in matrix)
+			{
+				elementCount += row.Length;
+			}
+			var allMatrixElements = new int[elementCount];
+			//var allMatrixElements1 = new int[matrix.Sum(row => row.Length)];
+
+			foreach(var row in matrix)
+			{
+				foreach(var element in row)
+				{
+					allMatrixElements[counter++] = element;
+				}
+			}
+
+			//var allMatrixElements1 = matrix.SelectMany(element => element).ToArray();
+
+			allMatrixElements = allMatrixElements.OrderBy(element => element).ToArray();
+
+			counter = 0;
+			for (var rowNumber = 0; rowNumber < matrix.Length; rowNumber++)
+			{
+				for(var columnNumber = 0; columnNumber < matrix[rowNumber].Length; columnNumber++)
+				{
+					matrix[rowNumber][columnNumber] = allMatrixElements[counter++];
+				}
+			}
+			PrintMatrix(matrix);
 		}
 
 		/// <summary>
@@ -1074,7 +1172,62 @@ namespace Lesson2
 		/// </summary>
 		public static void MatrixFunc8()
 		{
+			Console.Write("Enter number of rows for first matrix: ");
+			var numberOfRows = Convert.ToInt32(Console.ReadLine());
+			Console.Write("Enter number of columns for first matrix: ");
+			var numberOfColumns = Convert.ToInt32(Console.ReadLine());
+			Console.Write("Enter min value for first matrix: ");
+			var minValue = Convert.ToInt32(Console.ReadLine());
+			Console.Write("Enter max value for first matrix: ");
+			var maxValue = Convert.ToInt32(Console.ReadLine());
 
+			var firstMatrix = CreateMatrix(numberOfRows, numberOfColumns, minValue, maxValue);
+
+			Console.Write("Enter number of rows for second matrix: ");
+			numberOfRows = Convert.ToInt32(Console.ReadLine());
+			Console.Write("Enter number of columns for second matrix: ");
+			numberOfColumns = Convert.ToInt32(Console.ReadLine());
+			Console.Write("Enter min value for second matrix: ");
+			minValue = Convert.ToInt32(Console.ReadLine());
+			Console.Write("Enter max value for second matrix: ");
+			maxValue = Convert.ToInt32(Console.ReadLine());
+
+			var secondMatrix = CreateMatrix(numberOfRows, numberOfColumns, minValue, maxValue);
+
+			PrintMatrix(firstMatrix);
+			Console.WriteLine();
+			PrintMatrix(secondMatrix);
+
+			var firstMax = firstMatrix.SelectMany(element => element).Max();
+			var secondMin = secondMatrix.SelectMany(element => element).Min();
+
+			Console.WriteLine($"firstMax: {firstMax}, secondMin: {secondMin}");
+
+
+			for (var rowNumber = 0; rowNumber < firstMatrix.Length; rowNumber++)
+			{
+				for(var columnNumber = 0; columnNumber < firstMatrix[rowNumber].Length; columnNumber++)
+				{
+					if(firstMatrix[rowNumber][columnNumber] == firstMax)
+					{
+						firstMatrix[rowNumber][columnNumber] = secondMin;
+					}
+				}
+			}
+			for (var rowNumber = 0; rowNumber < secondMatrix.Length; rowNumber++)
+			{
+				for (var columnNumber = 0; columnNumber < secondMatrix[rowNumber].Length; columnNumber++)
+				{
+					if (secondMatrix[rowNumber][columnNumber] == secondMin)
+					{
+						secondMatrix[rowNumber][columnNumber] = firstMax;
+					}
+				}
+			}
+			Console.WriteLine();
+			PrintMatrix(firstMatrix);
+			Console.WriteLine();
+			PrintMatrix(secondMatrix);
 		}
 
 		/// <summary>
