@@ -1093,29 +1093,140 @@ namespace Lesson2
 		/// 1 2 3 4 5 6 7 8 9
 		/// 100
 		/// 
+		/// 1
+		/// 2^2
+		/// 1 2 3
+		/// 4^2
+		/// 1 2 3 4 5
+		/// 6^2
+		/// 1 2 3 4 5 6 7
+		/// 8^2
 		/// 
 		/// </summary>
-		public static void Func21FromCycles()
+		public static void Func21FromCycles() // To do left tasks
 		{
-			var matrix = new int[5][];
-			for (var rowIndex = 0; rowIndex < 5; rowIndex++)
+			//var matrix = new int[5][];
+			//for (var rowIndex = 0; rowIndex < 5; rowIndex++)
+			//{
+			//	matrix[rowIndex] = new int[rowIndex + 1];
+			//	for (var columnIndex = 0; columnIndex < matrix[rowIndex].Length; columnIndex++)
+			//	{
+			//		matrix[rowIndex][columnIndex] = rowIndex + 1;
+			//	}
+			//}
+			//PrintMatrix(matrix);
+
+			//б
+			//var matrix2 = new int[5][];
+			//var rowLenght = 5;
+			//var matrix2Element = 20;
+
+			//for (var rowIndex = 0; rowIndex < 5; rowIndex++)
+			//{
+			//	matrix2[rowIndex] = new int[rowLenght--];
+			//	for (var columnIndex = 0; columnIndex < matrix2[rowIndex].Length; columnIndex++)
+			//	{
+			//		matrix2[rowIndex][columnIndex] = matrix2Element + columnIndex;
+			//	}
+			//	matrix2Element--;
+			//}
+			//PrintMatrix(matrix2);
+
+			// в 
+			var matrix3 = new int[10][];
+			var oddRowElement = 4;
+			var oddRowElementGrowth = 12;
+
+			for (var rowIndex = 0; rowIndex <= matrix3.Length - 1 ; rowIndex++)
 			{
-				matrix[rowIndex] = new int[rowIndex + 1];
-				for (var columnIndex = 0; columnIndex < matrix[rowIndex].Length; columnIndex++)
+				if (rowIndex % 2 == 0)
 				{
-					matrix[rowIndex][columnIndex] = rowIndex + 1;
+					matrix3[rowIndex] = new int[rowIndex + 1];
+					for (var columnIndex = 0; columnIndex <= rowIndex; columnIndex++)
+					{
+						matrix3[rowIndex][columnIndex] = columnIndex + 1;
+					}
+
+				}
+				else
+				{
+					matrix3[rowIndex] = new int[1];
+					matrix3[rowIndex][0] = oddRowElement;
+					oddRowElement += oddRowElementGrowth;
+					oddRowElementGrowth += 8;
 				}
 			}
-			PrintMatrix(matrix);
+			PrintMatrix(matrix3);
 		}
 
 		/// <summary>
 		/// Отсортировать четные столбцы по возрастанию
 		/// нечетные - по убыванию
 		/// </summary>
-		public static void MatrixFunc1()
+		public static void MatrixFunc1() //To think about realisation
 		{
-			
+			Console.Write("Enter number of rows: ");
+			var numberOfRows = Convert.ToInt32(Console.ReadLine());
+			Console.Write("Enter number of columns: ");
+			var numberOfColumns = Convert.ToInt32(Console.ReadLine());
+			Console.Write("Enter min value: ");
+			var minValue = Convert.ToInt32(Console.ReadLine());
+			Console.Write("Enter max value: ");
+			var maxValue = Convert.ToInt32(Console.ReadLine());
+
+			var matrix = CreateMatrix(numberOfRows, numberOfColumns, minValue, maxValue);
+
+			Console.WriteLine("Original Matrix:");
+			PrintMatrix(matrix);
+			Console.WriteLine();
+
+			var sortedMatrix = new int[numberOfRows][]; // это можно опустить и сложить отсортированные элементы прямо в исходную матрицу
+			for (var rowIndex = 0; rowIndex < numberOfRows; rowIndex++)
+			{
+				sortedMatrix[rowIndex] = new int[numberOfColumns];
+			}
+
+			var sortableColumn = new int[numberOfRows];
+			for (var columnIndex = 0; columnIndex < matrix[0].Length; columnIndex++)
+			{
+				if (columnIndex % 2 == 0)
+				{
+					for (var rowIndex = 0; rowIndex < numberOfRows; rowIndex++)
+					{
+						sortableColumn[rowIndex] = matrix[rowIndex][columnIndex];
+					}
+					sortableColumn = sortableColumn.OrderBy(element => element).ToArray();
+					for (var rowIndex = 0; rowIndex < numberOfRows; rowIndex++)
+					{
+						sortedMatrix[rowIndex][columnIndex] = sortableColumn[rowIndex];
+					}
+				}
+				else
+				{
+					for (var rowIndex = 0; rowIndex < numberOfRows; rowIndex++)
+					{
+						sortableColumn[rowIndex] = matrix[rowIndex][columnIndex];
+					}
+					sortableColumn = sortableColumn.OrderByDescending(element => element).ToArray();
+					for (var rowIndex = 0; rowIndex < numberOfRows; rowIndex++)
+					{
+						sortedMatrix[rowIndex][columnIndex] = sortableColumn[rowIndex];
+					}
+				}
+			}
+			Console.WriteLine("Sorted Matrix:");
+			PrintMatrix(sortedMatrix);
+
+
+			//var sortedElement = 0;
+			//for (var columnIndex = 0; columnIndex < numberOfRows; columnIndex++)
+			//{
+			//	for(var rowIndex = 0; rowIndex < numberOfColumns; rowIndex++)
+			//	{
+			//		for()
+			//		sortedElement
+			//	}
+			//}
 		}
 
 		/// <summary>
@@ -1143,9 +1254,9 @@ namespace Lesson2
 			var allMatrixElements = new int[elementCount];
 			//var allMatrixElements1 = new int[matrix.Sum(row => row.Length)];
 
-			foreach(var row in matrix)
+			foreach (var row in matrix)
 			{
-				foreach(var element in row)
+				foreach (var element in row)
 				{
 					allMatrixElements[counter++] = element;
 				}
@@ -1158,7 +1269,7 @@ namespace Lesson2
 			counter = 0;
 			for (var rowNumber = 0; rowNumber < matrix.Length; rowNumber++)
 			{
-				for(var columnNumber = 0; columnNumber < matrix[rowNumber].Length; columnNumber++)
+				for (var columnNumber = 0; columnNumber < matrix[rowNumber].Length; columnNumber++)
 				{
 					matrix[rowNumber][columnNumber] = allMatrixElements[counter++];
 				}
@@ -1206,9 +1317,9 @@ namespace Lesson2
 
 			for (var rowNumber = 0; rowNumber < firstMatrix.Length; rowNumber++)
 			{
-				for(var columnNumber = 0; columnNumber < firstMatrix[rowNumber].Length; columnNumber++)
+				for (var columnNumber = 0; columnNumber < firstMatrix[rowNumber].Length; columnNumber++)
 				{
-					if(firstMatrix[rowNumber][columnNumber] == firstMax)
+					if (firstMatrix[rowNumber][columnNumber] == firstMax)
 					{
 						firstMatrix[rowNumber][columnNumber] = secondMin;
 					}
@@ -1233,7 +1344,7 @@ namespace Lesson2
 		/// <summary>
 		/// Поменять местами столбцы с макимальным и минимальным элемантами
 		/// </summary>
-		public static void MatrixFunc7()
+		public static void MatrixFunc7() // To think about realisation
 		{
 
 		}
@@ -1241,9 +1352,36 @@ namespace Lesson2
 		/// <summary>
 		/// Транспонировать матрицу
 		/// </summary>
-		public static void MatrixFunc3()
+		public static void MatrixFunc3() //to do realisation
 		{
+			Console.Write("Enter number of rows: ");
+			var numberOfRows = Convert.ToInt32(Console.ReadLine());
+			Console.Write("Enter number of columns: ");
+			var numberOfColumns = Convert.ToInt32(Console.ReadLine());
+			Console.Write("Enter min value: ");
+			var minValue = Convert.ToInt32(Console.ReadLine());
+			Console.Write("Enter max value: ");
+			var maxValue = Convert.ToInt32(Console.ReadLine());
 
+			var matrix = CreateMatrix(numberOfRows, numberOfColumns, minValue, maxValue);
+
+			Console.WriteLine("Original Matrix:");
+			PrintMatrix(matrix);
+			Console.WriteLine();
+
+
+			var transposedMatrix = new int[numberOfColumns][];
+			for (var rowIndex = 0; rowIndex < numberOfColumns; rowIndex++)
+			{
+				transposedMatrix[rowIndex] = new int[numberOfRows];
+				for (var columnIndex = 0; columnIndex < numberOfRows; columnIndex++)
+				{
+					transposedMatrix[rowIndex][columnIndex] = matrix[columnIndex][rowIndex];
+				}
+			}
+
+			Console.WriteLine("Transposed Matrix:");
+			PrintMatrix(transposedMatrix);
 		}
 
 		/// <summary>
