@@ -6,6 +6,7 @@ namespace Functions
 	{
 		static void Main(string[] args)
 		{
+			var res = Functions.Fib(3);
 		}
 	}
 }
