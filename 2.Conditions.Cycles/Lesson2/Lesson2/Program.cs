@@ -6,9 +6,15 @@ namespace Lesson2
 	{
 		static void Main(string[] args)
 		{
-			Arrays.MatrixFunc1();
+			Console.WriteLine("Enter the string");
+			var str = Console.ReadLine();
+
+			Console.WriteLine("Enter the word");
+			var word = Console.ReadLine();
+
+			var res = Arrays.Func30(str, word);
+			Console.Write(res);
+
 		}
-
-
 	}
 }

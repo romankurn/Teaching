@@ -893,12 +893,25 @@ namespace Lesson2
 		#endregion
 
 
+		// https://metanit.com/sharp/tutorial/7.1.php
 		#region Обработка строки как массива символов
 
 		/// <summary>
 		/// Дана страка. Выяснить, является ли она палиндромом
 		/// </summary>
-		public static void Func14FromCyclesForString() { }
+		public static bool Func14FromCyclesForString(string initialString)
+		{
+			var result = true;
+			for (var i = 0; i < initialString.Length / 2; i++)
+			{
+				if (initialString[i] != initialString[initialString.Length - i - 1])
+				{
+					result = false;
+					break;
+				}
+			}
+			return result;
+		}
 
 		/// <summary>
 		/// Посчитать количество цифр в строке.
@@ -906,76 +919,211 @@ namespace Lesson2
 		/// 2) с помощью char.IsDigit()
 		/// 3) с помощью методов LINQ
 		/// </summary>
-		public static void Func25()
+		public static int Func25(string str)
 		{
+			var digits = "0123456789".ToCharArray();
+			var counter = 0;
+			foreach (var element in str)
+			{
+				if (digits.Contains(element))
+				{
+					counter++;
+				}
+			}
+
+			//foreach (var element in str)
+			//{
+			//	if (char.IsDigit(element))
+			//		counter++;
+			//}
+
+			return counter;
 		}
 
 		/// <summary>
 		/// Посчитать количество букв в строке.
-		/// 1) вручную
 		/// 2) с помощью char.IsLetter()
-		/// 3) с помощью методов LINQ
 		/// </summary>
-		public static void Func26()
+		public static int Func26(string str) //hw
 		{
+			var counter = 0;
+
+			foreach (var element in str)
+			{
+				if (char.IsLetter(element))
+					counter++;
+			}
+
+			counter = str.Count(element => char.IsLetter(element));
+			return counter;
 		}
 
 		/// <summary>
 		/// Посчитать количество чисел в строке
 		/// (если в строке "dsfg12 gdfg3 sd4567" - 7 цифр, то чисел здесь всего 3)
-		/// *Показать, как это делается через LINQ
+		/// 1) вручную - hw
+		/// Показать, как это делается через LINQ
 		/// </summary>
-		public static void Func27()
+		public static int Func27(string line)
 		{
+			for (var i = 0; i < line.Length; i++)
+			{
+				if (!char.IsDigit(line[i]))
+				{
+					line = line.Replace(line[i], ' ');
+				}
+			}
+			return Func29(line);
 		}
 
 		/// <summary>
 		/// Посчитать количество слов в строке, считая, что слова разделены пробелами
 		/// *Показать, как это делается через LINQ
 		/// </summary>
-		public static void Func29()
+		public static int Func29(string str)
 		{
+			//str = Func33(str);
+
+			//var counter = 1;
+			//foreach (var element in str)
+			//{
+			//	if (element == ' ')
+			//	{
+			//		counter++;
+			//	}
+			//}
+			//return counter;
+
+			var words = str.Split(" ");
+			var res = words.Count(w => w != string.Empty);
+
+			return res;
 		}
 
 		/// <summary>
 		/// Посчитать количество слова word, вводимого с клавиатуры, в строке
-		/// *Показать, как это делается через LINQ
+		/// *Показать, как это делается через LINQ (Count, Contains)
 		/// </summary>
-		public static void Func30()
+		public static int Func30(string str, string word) //hw
 		{
+			str = Func33(str);
+			var words = str.Split(' ');
+			var counter = words.Count(w => w == word);
+
+			return counter;
+
+			//word dfg word2 -> 1
 		}
 
 		/// <summary>
 		/// Заменить все слова в строке, начинающиеся с буква 'а' их перевертышами
-		/// *Показать, как это делается через LINQ
+		/// *Показать, как это делается через LINQ 
 		/// </summary>
-		public static void Func31()
+		public static string Func31(string str) //hw
 		{
+			str = Func33(str);
+			var words = str.Split(' ');
+			for (var wordIndex = 0; wordIndex < words.Length; wordIndex++)
+			{
+				if (words[wordIndex][0] == 'a')
+				{
+					char[] letters = words[wordIndex].ToCharArray();
+					Array.Reverse(letters);
+					words[wordIndex] = new string(letters);
+					words[wordIndex] = words[wordIndex] + " ";
+				}
+				else
+				{
+					words[wordIndex] = words[wordIndex] + " ";
+				}
+			}
+			str = String.Concat(words);
+
+			words = str.Split(' ');
+			var word = words.FirstOrDefault(w => w.StartsWith('a') || w.StartsWith('A'));
+			var reverse = new string(word?.Reverse().ToArray());
+			str = reverse != null ? str.Replace(word, reverse) : str;
+
+			return str;
+
+			// .Reverse
 		}
 
 		/// <summary>
 		/// Найти порядковый номер первого слова в строке, в котором встречается буква 'r'
 		/// *Показать, как это делается через LINQ
 		/// </summary>
-		public static void Func32()
+		public int Func32(string str) //hw
 		{
+			var words = Func33(str).Split(' ');
+
+			var word = words.FirstOrDefault(w => w.Contains('r'));
+
+			if (word == null)
+				return -1;
+
+			var index = 0;
+			foreach(var w in words)
+			{
+				if (w == word)
+					break;
+				index++;
+			}
+
+			return index;
 		}
 
 		/// <summary>
 		/// Заменить в строке все последовательности пробелов больше 1 на 1 пробел, а пробелы в начале и конце удалить
 		/// *Показать как это делается через регулярки
 		/// </summary>
-		public static void Func33()
+		public static string Func33(string str)
 		{
+			str = str.Trim();
+			var count = 0;
+			var startIndex = 0;
+			for (var i = 0; i < str.Length; i++)
+			{
+				if (str[i] == ' ' && str[i + 1] == ' ')
+				{
+					count = 0;
+					startIndex = i;
+					while (true)
+					{
+						if (str[++i] != ' ')
+							break;
+
+						count++;
+					}
+					str = str.Remove(startIndex, count);
+					i -= count;
+				}
+			}
+			//sdfs     sdf
+			//str = str.Remove(startIndex, count);
+			return str;
 		}
 
 		/// <summary>
 		/// Проверить правильность открывающихся и закрывающихся круглых скобок в строке
 		/// "df( sdf ( sdf ) ff ) dfg (fsdf)" - валидно.
-		/// "fff)sdfsdf( sdfsd (sdf)sadf" - невалидно
+		/// "fff)(sdfsdf( sdfsd (sdf)sadf" - невалидно
 		/// </summary>
-		public static void Func34()
+		public static bool Func34(string str)
 		{
+			var conter = 0;
+			foreach (var element in str)
+			{
+				if (element == '(')
+					conter++;
+				if (element == ')')
+				{
+					conter--;
+					if (conter < 0)
+						return false;
+				}
+			}
+			return conter == 0;
 		}
 
 		/// <summary>
@@ -983,7 +1131,7 @@ namespace Lesson2
 		/// Последовательность заканчивается знаком «=».
 		/// Вычислить значение алгебраической суммы.
 		/// </summary>
-		public static void Func35()
+		public static void Func35() //hw
 		{
 
 		}
@@ -991,7 +1139,7 @@ namespace Lesson2
 		#endregion
 
 
-		#region Двумерные массивы - Comming soon...
+		#region Двумерные массивы
 
 		public void ArrayOfArraysDescription()
 		{
@@ -1053,7 +1201,7 @@ namespace Lesson2
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="matrix"></param>
-		public static void PrintMatrix<T>(T[][] matrix)
+		public static void PrintMatrix(int[][] matrix)
 		{
 			foreach (var row in matrix)
 			{
@@ -1137,7 +1285,7 @@ namespace Lesson2
 			var oddRowElement = 4;
 			var oddRowElementGrowth = 12;
 
-			for (var rowIndex = 0; rowIndex <= matrix3.Length - 1 ; rowIndex++)
+			for (var rowIndex = 0; rowIndex <= matrix3.Length - 1; rowIndex++)
 			{
 				if (rowIndex % 2 == 0)
 				{
