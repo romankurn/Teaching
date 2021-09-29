@@ -1,4 +1,6 @@
-﻿namespace Functions
+﻿using System;
+
+namespace Functions
 {
 	public class Functions
 	{
@@ -65,5 +67,16 @@
 			//f(1)= 0, f(2)= 1
 			// 0 1 | 1 
 		}
+
+
+		
+
+
+
+
+
+
 	}
+
+
 }

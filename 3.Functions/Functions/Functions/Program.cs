@@ -6,7 +6,9 @@ namespace Functions
 	{
 		static void Main(string[] args)
 		{
-			var res = Functions.Fib(3);
+			var res = Recursion.cFunction1(2);
+
+			Console.WriteLine(res);
 		}
 	}
 }
