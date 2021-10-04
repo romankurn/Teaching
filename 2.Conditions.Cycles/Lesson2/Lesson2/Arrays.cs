@@ -1201,7 +1201,7 @@ namespace Lesson2
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="matrix"></param>
-		public static void PrintMatrix(int[][] matrix)
+		public static void PrintMatrix<T>(T[][] matrix)
 		{
 			foreach (var row in matrix)
 			{

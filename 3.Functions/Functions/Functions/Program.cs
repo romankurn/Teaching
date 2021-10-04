@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Lesson2;
+using System;
+using System.Linq;
 
 namespace Functions
 {
@@ -6,9 +8,7 @@ namespace Functions
 	{
 		static void Main(string[] args)
 		{
-			var res = Recursion.cFunction1(2);
-
-			Console.WriteLine(res);
+			
 		}
 	}
 }

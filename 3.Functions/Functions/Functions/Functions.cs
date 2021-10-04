@@ -69,14 +69,57 @@ namespace Functions
 		}
 
 
+		public static void Mix(int[] array)
+		{
+			var random = new Random();
+
+			for (var index = 0; index < array.Length; index++)
+			{
+				var newIndex = random.Next(0, array.Length);
+
+				var transit = array[index];
+				array[index] = array[newIndex];
+				array[newIndex] = transit;
+
+			}
+		}
+
 		
+		//public static void FuncFieldPath(int[] field)
+		//{
 
+		//}
 
+		/// <summary>
+		/// Заполнить каждую ячейку массива числом, указывающим сколькими способами в эту ячейку можно попасть
+		/// при условии что ходить можно сверху вниз и слева на право.
+		/// </summary>
+		public static int GetMoveQuantity(int[][] field, int row, int column)
+		{
+			int result = 0;
 
+			if (row == 0 && column == 0)
+				result = 1;
+			
+			if (row == 0 && column != 0)
+			{
+				result = GetMoveQuantity(field, row, column - 1);
 
+			}
+			else if (column == 0 && row != 0)
+			{
+				result = GetMoveQuantity(field, row - 1, column);
 
+			}
+			else if (row != 0 && column != 0)
+			{
+				result = GetMoveQuantity(field, row, column - 1) + GetMoveQuantity(field, row - 1, column);
+
+			}
+
+			field[row][column] = result;
+			return result;
+		}
 
 	}
-
-
 }
