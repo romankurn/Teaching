@@ -1196,6 +1196,18 @@ namespace Lesson2
 			return matrix;
 		}
 
+		public static char[][] CreateMatrix(int rows, int columns)
+		{
+			var matrix = new char[rows][];
+			for (var rowIndex = 0; rowIndex < rows; rowIndex++)
+			{
+				matrix[rowIndex] = new char[columns];
+			
+			}
+
+			return matrix;
+		}
+
 		/// <summary>
 		/// Напечатать двумерный массив
 		/// </summary>

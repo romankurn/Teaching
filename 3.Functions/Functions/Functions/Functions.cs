@@ -69,7 +69,7 @@ namespace Functions
 		}
 
 
-		public static void Mix(int[] array)
+		public static int[] Mix(int[] array)
 		{
 			var random = new Random();
 
@@ -80,8 +80,8 @@ namespace Functions
 				var transit = array[index];
 				array[index] = array[newIndex];
 				array[newIndex] = transit;
-
 			}
+			return array;
 		}
 
 		

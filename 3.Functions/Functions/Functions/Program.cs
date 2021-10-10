@@ -8,7 +8,9 @@ namespace Functions
 	{
 		static void Main(string[] args)
 		{
-			
+			Console.WriteLine(Homework.Task2("_Usdf_UsegdfgIfsd_in"));
+
+
 		}
 	}
 }
