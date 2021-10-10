@@ -264,53 +264,8 @@ namespace Functions
 			return field;
 		}
 
-		public static int GetWeightsMatrix(int[][] field, int row, int column)
-		{
-			int result = 0;
-
-			if (row == 0 && column == 0)
-				result = field[0][0];
-
-			if (row == 0 && column != 0)
-			{
-				result = GetWeightsMatrix(field, row, column - 1);
-			}
-			else if (column == 0 && row != 0)
-			{
-				result = GetWeightsMatrix(field, row - 1, column);
-			}
-			else if (row != 0 && column != 0)
-			{
-				result = Math.Min(GetWeightsMatrix(field, row, column - 1), GetWeightsMatrix(field, row - 1, column));
-			}
-
-			field[row][column] = result;
-			return result;
-		}
-
-		//public static int GetWeightsMatrix (int[][] field, int[][] WeightsMatrix, int row, int column)
-		//{
-		//	int result = 0;
-
-		//	if (row == 0 && column == 0)
-		//		result = field[0][0];
-
-		//	if (row == 0 && column != 0)
-		//	{
-		//		result += GetWeightsMatrix(field, WeightsMatrix, row, column - 1);
-		//	}
-		//	else if (column == 0 && row != 0)
-		//	{
-		//		result += GetWeightsMatrix(field, WeightsMatrix, row - 1, column);
-		//	}
-		//	else if (row != 0 && column != 0)
-		//	{
-		//		result += Math.Min(GetWeightsMatrix(field, WeightsMatrix, row, column - 1), GetWeightsMatrix(field, WeightsMatrix, row - 1, column));
-		//	}
-
-		//	WeightsMatrix[row][column] = result;
-		//	return result;
-		//}
+	
+		
 
 		public static int GetMinWeight(int[][] field, int[][] weights, char[][] directions, int row, int column)
 		{
