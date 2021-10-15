@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Lesson2
 {
-	public class Arrays
+	public static class Arrays
 	{
 		#region Description
 
@@ -60,7 +60,7 @@ namespace Lesson2
 			}
 		}
 
-		public static void PrintArray<TArray>(TArray[] array)
+		public static void PrintArray<TArray>(this TArray[] array)
 		{
 			foreach (var element in array)
 			{
@@ -1196,12 +1196,24 @@ namespace Lesson2
 			return matrix;
 		}
 
+		public static char[][] CreateMatrix(int rows, int columns)
+		{
+			var matrix = new char[rows][];
+			for (var rowIndex = 0; rowIndex < rows; rowIndex++)
+			{
+				matrix[rowIndex] = new char[columns];
+			
+			}
+
+			return matrix;
+		}
+
 		/// <summary>
 		/// Напечатать двумерный массив
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="matrix"></param>
-		public static void PrintMatrix(int[][] matrix)
+		public static void PrintMatrix<T>(T[][] matrix)
 		{
 			foreach (var row in matrix)
 			{
