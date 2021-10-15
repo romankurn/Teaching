@@ -8,7 +8,7 @@ namespace Functions
 	{
 		static void Main(string[] args)
 		{
-			GenericFunctions.Function11();
+			GenericFunctions.Function9();
 		}
 		
 	}

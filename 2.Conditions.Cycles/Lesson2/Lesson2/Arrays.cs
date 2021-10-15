@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Lesson2
 {
-	public class Arrays
+	public static class Arrays
 	{
 		#region Description
 
@@ -60,7 +60,7 @@ namespace Lesson2
 			}
 		}
 
-		public static void PrintArray<TArray>(TArray[] array)
+		public static void PrintArray<TArray>(this TArray[] array)
 		{
 			foreach (var element in array)
 			{
