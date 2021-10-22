@@ -21,8 +21,6 @@ namespace OOP1
 		/// </summary>
 		public Point()
 		{
-			_x = 0;
-			Y = 0;
 		}
 
 		/// <summary>

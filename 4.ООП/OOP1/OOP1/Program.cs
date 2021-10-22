@@ -14,21 +14,29 @@ namespace OOP1
 	{
 		static void Main(string[] args)
 		{
-			var point1 = new Point(5, 10);
-			var point2 = new Point(10, -10);
-			//var point3 = point1 + point2;
-			//point3.Show();
+			//var point1 = new Point(5, 10);
+			//var point2 = new Point(10, -10);
+			////var point3 = point1 + point2;
+			////point3.Show();
 
-			//var a = point2 > point1;
+			////var a = point2 > point1;
 
-			var line = new Line(point1, point2);
-			var line2 = new Line(new Point(0, 0), new Point(3, -4));
+			//var line = new Line(point1, point2);
+			//var line2 = new Line(new Point(0, 0), new Point(3, -4));
 
-			var length = line.Length;
-			var length2 = line2.Length;
+			//var length = line.Length;
+			//var length2 = line2.Length;
 
 
 
+			var array = new Point[] { new Point(0, 0), new Point(0, 5), new Point(0, 10), new Point(5, 10), new Point(20, 20) };
+
+			var brokenLine = new BrokenLine(array);
+			
+			var result = brokenLine + new Point(15, 15);
+
+			var x = brokenLine.Length();
+			var y = brokenLine.Distance();
 		}
 
 

@@ -10,6 +10,11 @@ namespace OOP1
 
 		public double Length => Math.Sqrt(Math.Pow(_point1.X - Point2.X, 2) + Math.Pow(_point1.Y - Point2.Y, 2));
 
+		public Line()
+		{
+			_point1 = new Point();
+			Point2 = new Point();
+		}
 
 		public Line(Point point1, Point point2)
 		{
@@ -19,7 +24,7 @@ namespace OOP1
 
 		public static bool operator >(Line line1, Line line2)
 		{
-			return line1.Length > line2.Length;
+			return line1.Length > line2.Length;			
 		}
 
 		public static bool operator <(Line line1, Line line2)
@@ -28,6 +33,5 @@ namespace OOP1
 		}
 
 	}
-
 
 }
