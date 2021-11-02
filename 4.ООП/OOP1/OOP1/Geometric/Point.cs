@@ -34,6 +34,12 @@ namespace OOP1
 			Y = y;
 		}
 
+		public Point(Point copyingObject)
+		{
+			_x = copyingObject._x;
+			Y = copyingObject.Y;
+		}
+
 		public void Show()
 		{
 			Console.WriteLine($"({_x}; {Y})");
