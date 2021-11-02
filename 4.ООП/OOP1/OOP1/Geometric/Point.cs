@@ -45,6 +45,13 @@ namespace OOP1
 			Console.WriteLine($"({_x}; {Y})");
 		}
 
+		public override bool Equals(object obj)
+		{
+			var point = obj as Point;
+
+			return point.X == X && point.Y == Y;
+		}
+
 		public static bool operator >(Point point1, Point point2)
 		{
 			return point1.X == point2.X ? point1.Y > point2.Y : point1.X > point2.X;
