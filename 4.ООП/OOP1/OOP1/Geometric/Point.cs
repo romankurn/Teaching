@@ -52,6 +52,11 @@ namespace OOP1
 			return point.X == X && point.Y == Y;
 		}
 
+		public override string ToString()
+		{
+			return $"({X}; {Y})";
+		}
+
 		public static bool operator >(Point point1, Point point2)
 		{
 			return point1.X == point2.X ? point1.Y > point2.Y : point1.X > point2.X;
@@ -62,15 +67,15 @@ namespace OOP1
 			return point1.X == point2.X ? point1.Y < point2.Y : point1.X < point2.X;
 		}
 
-		public static bool operator ==(Point point1, Point point2)
-		{
-			return point1.X == point2.X && point1.Y == point2.Y;
-		}
+		//public static bool operator ==(Point point1, Point point2)
+		//{
+		//	return point1.X == point2.X && point1.Y == point2.Y;
+		//}
 
-		public static bool operator !=(Point point1, Point point2)
-		{
-			return point1.X != point2.X || point1.Y != point2.Y;
-		}
+		//public static bool operator !=(Point point1, Point point2)
+		//{
+		//	return point1 != null && point2 != null && point1.X != point2.X || point1.Y != point2.Y;
+		//}
 
 		public static Point operator + (Point point1, Point point2)
 		{

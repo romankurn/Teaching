@@ -4,9 +4,9 @@ namespace GenericTree
 {
 	public class ItemNullException : Exception
 	{
-		public ItemNullException(string message) : base(message)
+		public ItemNullException() : base("Item cannot be null")
 		{
-
+			
 		}
 	}
 }

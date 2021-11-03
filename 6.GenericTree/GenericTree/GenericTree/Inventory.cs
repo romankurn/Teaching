@@ -13,8 +13,8 @@ namespace GenericTree
 	{
 		private static int _counter = 0;
 
-		private List<Inventory<TItem>> _items;
-		private TItem _item;
+		public List<Inventory<TItem>> Items { get; set; }
+		public TItem Item { get; set; }
 
 		public int Id { get; private set; }
 		public InventoryType Type { get; set; }
@@ -26,15 +26,17 @@ namespace GenericTree
 
 			if (Type == InventoryType.Box)
 			{
-				//TODO: exception if boxName is empty
+				if (string.IsNullOrEmpty(boxName))
+					throw new BoxNameEmptyException();
+
 				BoxName = boxName;
-				_items = new List<Inventory<TItem>>();
+				Items = new List<Inventory<TItem>>();
 			}
 			else
 			{
 				if (item == null)
-					throw new ItemNullException("Item cannot be null");
-				_item = item;
+					throw new ItemNullException();
+				Item = item;
 			}
 
 			Id = _counter;
@@ -43,17 +45,20 @@ namespace GenericTree
 
 		public void Push(Inventory<TItem> item)
 		{
+			if (item == null)
+				throw new ItemNullException();
+
 			if (Type == InventoryType.Box)
-				_items.Add(item);
+				Items.Add(item);
 		}
 
 		public void Pop(TItem item)
 		{
 			var index = 0;
 			var exist = false;
-			foreach (var inventiryItem in _items)
+			foreach (var inventiryItem in Items)
 			{
-				if (inventiryItem._item.Equals(item))
+				if (inventiryItem.Item.Equals(item))
 				{
 					exist = true;
 					break;
@@ -62,18 +67,25 @@ namespace GenericTree
 			}
 
 			if (exist)
-				_items.RemoveAt(index);
+				Items.RemoveAt(index);
 		}
 
 		public void Move(int targetId, int sourseId)
 		{
-			var targetItem = _items.FirstOrDefault(i => i.Id == targetId && i.Type == InventoryType.Box);
-			var sourceItem = _items.FirstOrDefault(i => i.Id == sourseId);
+			var targetItem = Items.FirstOrDefault(i => i.Id == targetId && i.Type == InventoryType.Box);
+			var sourceItem = Items.FirstOrDefault(i => i.Id == sourseId);
 
-			targetItem.Push(sourceItem);
+			try
+			{
+				targetItem.Push(sourceItem);
+			}
+			catch (NullReferenceException)
+			{
+				throw new BoxNullException();
+			}
 
 			var index = 0;
-			foreach (var inventiryItem in _items)
+			foreach (var inventiryItem in Items)
 			{
 				if (inventiryItem.Id == sourseId)
 				{
@@ -81,40 +93,40 @@ namespace GenericTree
 				}
 				index++;
 			}
-			_items.RemoveAt(index);
+			Items.RemoveAt(index);
 		}
 
 
-		//public TItem Find(TItem item)
-		//{
-		//	TItem result = null;
+		public TItem FindItem(TItem item)
+		{
+			TItem result = null;
 
-		//	foreach (var itemInventory in _items.Where(i => i.Type == InventoryType.Item))
-		//	{
-		//		if (itemInventory._item.Equals(item))
-		//		{
-		//			result = itemInventory._item;
-		//			Pop(itemInventory._item);
-		//			break;
-		//		}
-		//	}
-		//	if (result != null)
-		//		return result;
+			foreach (var itemInventory in Items.Where(i => i.Type == InventoryType.Item))
+			{
+				if (itemInventory.Item.Equals(item))
+				{
+					result = itemInventory.Item;
+					Pop(itemInventory.Item);
+					break;
+				}
+			}
+			if (result != null)
+				return result;
 
-		//	foreach (var itemInventory in _items.Where(i => i.Type == InventoryType.Box))
-		//	{
-		//		result = itemInventory.Find(item);
-		//	}
-		//	return result;
-		//}
+			foreach (var itemInventory in Items.Where(i => i.Type == InventoryType.Box))
+			{
+				result = itemInventory.FindItem(item);
+			}
+			return result;
+		}
 
-		public int? Find(TItem item)
+		public int? GetItemId(TItem item)
 		{
 			Inventory<TItem> result = null;
 
-			foreach (var itemInventory in _items.Where(i => i.Type == InventoryType.Item))
+			foreach (var itemInventory in Items.Where(i => i.Type == InventoryType.Item))
 			{
-				if (itemInventory._item.Equals(item))
+				if (itemInventory.Item.Equals(item))
 				{
 					result = itemInventory;
 					break;
@@ -126,9 +138,30 @@ namespace GenericTree
 			return null;
 		}
 
-		public Inventory<TItem> Find(string boxName)
+		public Inventory<TItem> FindBox(string boxName)
 		{
-			return _items.FirstOrDefault(box => box.BoxName == boxName);
+			var box = Items.FirstOrDefault(box => box.BoxName == boxName);
+			if (box == null)
+				throw new BoxNullException();
+			return box;
+		}
+
+		public void Scan(int level = 0)
+		{
+			var tabs = string.Concat(Enumerable.Repeat("   ", level));
+			if (Type == InventoryType.Item)
+			{
+				Console.WriteLine($"{tabs}{Item}");
+			}
+			else
+			{
+				Console.WriteLine($"{tabs}{BoxName}");
+
+				foreach (var inventoryItem in Items)
+				{
+					inventoryItem.Scan(level + 1);
+				}
+			}
 		}
 		
 	}
