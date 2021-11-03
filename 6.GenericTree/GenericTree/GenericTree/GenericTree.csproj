@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\4.ООП\OOP1\OOP1\OOP1.csproj" />
     <ProjectReference Include="..\..\..\ObjectSaver\ObjectSaver\ObjectSaver.csproj" />
   </ItemGroup>
 
