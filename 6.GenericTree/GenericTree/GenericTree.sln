@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericTree", "GenericTree\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OOP1", "..\..\4.ООП\OOP1\OOP1\OOP1.csproj", "{40B4BAEA-A277-457D-90D7-71CF3A7BB002}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectSaver", "..\..\ObjectSaver\ObjectSaver\ObjectSaver.csproj", "{3132484B-D3D7-4ED5-9112-D16F4441BF3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectSaver", "..\..\ObjectSaver\ObjectSaver\ObjectSaver.csproj", "{3132484B-D3D7-4ED5-9112-D16F4441BF3E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicMenu", "..\..\DynamicMenu\DynamicMenu\DynamicMenu\DynamicMenu.csproj", "{12E7FD01-EA1F-4705-BF13-57F69B036C20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{3132484B-D3D7-4ED5-9112-D16F4441BF3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3132484B-D3D7-4ED5-9112-D16F4441BF3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3132484B-D3D7-4ED5-9112-D16F4441BF3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12E7FD01-EA1F-4705-BF13-57F69B036C20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12E7FD01-EA1F-4705-BF13-57F69B036C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12E7FD01-EA1F-4705-BF13-57F69B036C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12E7FD01-EA1F-4705-BF13-57F69B036C20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
