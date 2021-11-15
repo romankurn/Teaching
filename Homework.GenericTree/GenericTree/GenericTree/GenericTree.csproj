@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\GenealogicalTree\GenealogicalTree\GenealogicalTree.csproj" />
     <ProjectReference Include="..\..\..\ObjectSaver\ObjectSaver\ObjectSaver.csproj" />
   </ItemGroup>
 
