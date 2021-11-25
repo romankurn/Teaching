@@ -6,16 +6,21 @@ namespace Polymorphism
 	{
 		static void Main(string[] args)
 		{
-			Animal bird = new Bird();
-			bird.Say(); // Animal says
+			var student1 = new Student("Bob", 20, "JD", 2);
+			var student2 = new Student("Tom", 21, "BF", 3);
+			var teacher = new Teacher("Tim", 52, "hg", 4);
 
-			var mammal = new Mammal();
-			mammal.Say(); // Mammal says
+
 		}
 
-		static void MakeAnimalSay(Animal animal)
+		static void Introduse(Person person)
 		{
-			animal.Say();
+			person.Print();
+		}
+
+		static Person GetCopy(Person person)
+		{
+			return person.Clone();
 		}
 	}
 }
