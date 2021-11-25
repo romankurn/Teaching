@@ -1053,25 +1053,25 @@ namespace Lesson2
 		/// Найти порядковый номер первого слова в строке, в котором встречается буква 'r'
 		/// *Показать, как это делается через LINQ
 		/// </summary>
-		public int Func32(string str) //hw
-		{
-			var words = Func33(str).Split(' ');
+		//public int Func32(string str) //hw
+		//{
+		//	var words = Func33(str).Split(' ');
 
-			var word = words.FirstOrDefault(w => w.Contains('r'));
+		//	var word = words.FirstOrDefault(w => w.Contains('r'));
 
-			if (word == null)
-				return -1;
+		//	if (word == null)
+		//		return -1;
 
-			var index = 0;
-			foreach(var w in words)
-			{
-				if (w == word)
-					break;
-				index++;
-			}
+		//	var index = 0;
+		//	foreach(var w in words)
+		//	{
+		//		if (w == word)
+		//			break;
+		//		index++;
+		//	}
 
-			return index;
-		}
+		//	return index;
+		//}
 
 		/// <summary>
 		/// Заменить в строке все последовательности пробелов больше 1 на 1 пробел, а пробелы в начале и конце удалить
@@ -1141,35 +1141,35 @@ namespace Lesson2
 
 		#region Двумерные массивы
 
-		public void ArrayOfArraysDescription()
-		{
-			int[][] matrix = new int[5][];
-			matrix[0] = new int[3];
-			matrix[1] = new int[1];
-			//..
-			//	..
-			//	..
-			//matrix[row-1] = new int[column];
+		//public void ArrayOfArraysDescription()
+		//{
+		//	int[][] matrix = new int[5][];
+		//	matrix[0] = new int[3];
+		//	matrix[1] = new int[1];
+		//	//..
+		//	//	..
+		//	//	..
+		//	//matrix[row-1] = new int[column];
 
-			var matrix2 = new int[5][];
+		//	var matrix2 = new int[5][];
 
-			int[][] matrix3 = { new[] { 1, 2, 3 }, new[] { 11, 12, 13 } };
+		//	int[][] matrix3 = { new[] { 1, 2, 3 }, new[] { 11, 12, 13 } };
 
-			foreach (var row in matrix3)
-			{
-				foreach (var element in row)
-				{
-				}
-			}
+		//	foreach (var row in matrix3)
+		//	{
+		//		foreach (var element in row)
+		//		{
+		//		}
+		//	}
 
-			for (var rowIndex = 0; rowIndex < matrix3.Length; rowIndex++)
-			{
-				for (var columnIndex = 0; columnIndex < matrix3[rowIndex].Length; columnIndex++)
-				{
+		//	for (var rowIndex = 0; rowIndex < matrix3.Length; rowIndex++)
+		//	{
+		//		for (var columnIndex = 0; columnIndex < matrix3[rowIndex].Length; columnIndex++)
+		//		{
 
-				}
-			}
-		}
+		//		}
+		//	}
+		//}
 
 		/// <summary>
 		/// Заполнить матрицу размера rows*columns рандомными числами от min до max 

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Abstract.Homework.Animals">
+    <Position X="1.25" Y="3.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAABAAACAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Homework\Animals\Animals.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Abstract.Homework.Unicellular">
+    <Position X="2.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAEAIgAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Homework\Animals\Unicellular.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Abstract.Homework.LivingOrganisms">
+    <Position X="3.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAIAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Homework\LivingOrganisms.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Abstract.Homework.Mushrooms">
+    <Position X="4.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAQAAAAAAAAAAABAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Homework\Mushrooms.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Abstract.Homework.Plants" Collapsed="true">
+    <Position X="6.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Homework\Plants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Abstract.Homework.Universe" Collapsed="true">
+    <Position X="8.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Homework\Universe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Abstract.Homework.AnimalSubkingdoms" Collapsed="true">
+    <Position X="6.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Homework\Enams\AnimalSubkingdoms.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Abstract.Homework.GrowthStage" Collapsed="true">
+    <Position X="8.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAAAAAAABAAAAA=</HashCode>
+      <FileName>Homework\Enams\GrowthStage.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Abstract.Homework.NutritionType" Collapsed="true">
+    <Position X="6.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAEAA=</HashCode>
+      <FileName>Homework\Enams\NutritionType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Abstract.Homework.UnicellularReproductionTypes" Collapsed="true">
+    <Position X="8.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Homework\Enams\UnicellularReproductionTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
