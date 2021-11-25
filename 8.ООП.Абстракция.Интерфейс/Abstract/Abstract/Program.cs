@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Abstract.Homework;
+using System;
 using System.Diagnostics;
 
 namespace Abstract
@@ -7,6 +8,9 @@ namespace Abstract
 	{
 		static void Main(string[] args)
 		{
+			var m = new Mushrooms();
+			var m2 = (Mushrooms)m.Reproduction();
+			
 			Console.ReadKey();
 		}
 
