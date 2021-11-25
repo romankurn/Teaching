@@ -9,8 +9,8 @@ namespace Abstract.Homework
 	public abstract class LivingOrganisms
 	{
 		protected NutritionType _nutritionType;
-		
-		public LivingOrganisms()
+
+		protected LivingOrganisms()
 		{
 
 		}
@@ -22,6 +22,6 @@ namespace Abstract.Homework
 
 		public abstract void Growth();
 
-		public abstract organismType Reproduction<organismType>();
+		public abstract LivingOrganisms Reproduction();
 	}
 }

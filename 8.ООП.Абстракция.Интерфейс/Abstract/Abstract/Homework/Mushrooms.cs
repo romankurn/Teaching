@@ -27,7 +27,7 @@ namespace Abstract.Homework
 			MyceliumArea *= 1.35;
 		}
 
-		public override Mushrooms Reproduction<Mushrooms>()
+		public override LivingOrganisms Reproduction()
 		{
 			var progenyNumber = (int)(MyceliumArea / 3);
 			_coloniesNumber += progenyNumber;

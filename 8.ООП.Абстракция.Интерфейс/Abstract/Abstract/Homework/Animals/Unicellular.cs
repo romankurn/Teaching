@@ -25,6 +25,11 @@ namespace Abstract.Homework
 			UnicellularReproductionType = unicellularReproductionType;
 		}
 
+		public override LivingOrganisms Reproduction()
+		{
+			throw new NotImplementedException();
+		}
+
 		// метод Growth этот класс должен знать от родителя, т.к. он от него наследуется, правильно?
 
 		// метод Reproduction должен быть определён так:

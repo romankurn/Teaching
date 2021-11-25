@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Abstract.Homework
 {
-	public class Animals : LivingOrganisms
+	public abstract class Animals : LivingOrganisms
 	{
 		protected AnimalSubkingdoms _animalSubkingdoms;
 
@@ -36,7 +36,7 @@ namespace Abstract.Homework
 			}
 		}
 
-		public abstract organismType Reproduction<organismType>();
+		//public abstract organismType Reproduction<organismType>();
 		// вот тут вопрос 4
 	}
 }
