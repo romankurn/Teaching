@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polymorphism
 {
@@ -25,9 +21,24 @@ namespace Polymorphism
 			Console.WriteLine($", Facility: {Facility}, Course: {Course}");
 		}
 
-		public override Person Clone()
+		public override object Clone()
 		{
-			return new Student(Name, Age, Facility, Course) { Id = Id, TeacherId = TeacherId};
+			return new Student(Name, Age, Facility, Course) { Id = Id, TeacherId = TeacherId };
 		}
+
+		//public int CompareTo(Student other)
+		//{
+		//	if(other == null)
+		//		throw new ArgumentNullException("Unpossible to compare with null");
+		//	if (other.Course < Course)
+		//	{
+		//		return 1;
+		//	}
+		//	if (other.Course == Course)
+		//	{
+		//		return Name.CompareTo(other.Name);
+		//	}
+		//	return -1;
+		//}
 	}
 }

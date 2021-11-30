@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Polymorphism
 {
-	public class Person
+	public class Person : ICloneable
 	{
 		public string Name { get; set; }
 		public int Age { get; set; }
@@ -22,7 +22,12 @@ namespace Polymorphism
 			Console.Write($"{GetType().Name}. Name: {Name}, Age: {Age}");
 		}
 
-		public virtual Person Clone()
+		//public virtual Person Clone()
+		//{
+		//	return new Person(Name, Age);
+		//}
+
+		public virtual object Clone()
 		{
 			return new Person(Name, Age);
 		}
