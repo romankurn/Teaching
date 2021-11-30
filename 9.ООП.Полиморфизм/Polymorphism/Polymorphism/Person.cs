@@ -26,5 +26,10 @@ namespace Polymorphism
 		{
 			return new Person(Name, Age);
 		}
+
+		public override string ToString()
+		{
+			return $"{GetType().Name}. Name: {Name}, Age: {Age}";
+		}
 	}
 }

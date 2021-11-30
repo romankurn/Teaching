@@ -29,5 +29,10 @@ namespace Polymorphism
 		{
 			return new Student(Name, Age, Facility, Course) { Id = Id, TeacherId = TeacherId};
 		}
+
+		public override string ToString()
+		{
+			return $"{GetType().Name}. Name: {Name}, Age: {Age}, Facility: {Facility}, Course: {Course}, Teacher: достать имя";
+		}
 	}
 }
