@@ -20,9 +20,9 @@ namespace Polymorphism
 			Console.WriteLine($"{GetType().Name}. Name: {Name}, Age: {Age}");
 		}
 
-		public override Person Clone()
+		public override object Clone()
 		{
-			return new Teacher(Name, Age, Facility, Course) { Id = Id, StudentIds = StudentIds.Select(id => id).ToList()};
+			return new Teacher(Name, Age, Facility, Course) { Id = Id, StudentIds = StudentIds.Select(id => id).ToList() };
 		}
 
 		public override string ToString()

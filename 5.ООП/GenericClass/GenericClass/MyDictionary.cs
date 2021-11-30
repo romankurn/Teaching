@@ -73,5 +73,10 @@ namespace GenericClass
 				}
 			}
 		}
+
+		public IEnumerator<MyKeyValue<TKey, TValue>> GetEnumerator()
+		{
+			return new DictionaryEnumerator<TKey, TValue>(_pairs);
+		}
 	}
 }

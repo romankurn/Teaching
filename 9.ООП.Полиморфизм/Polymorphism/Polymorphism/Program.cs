@@ -65,10 +65,5 @@ namespace Polymorphism
 			person.Print();
 		}
 
-		static Person GetCopy(Person person)
-		{
-			return person.Clone();
-		}
-				
 	}
 }

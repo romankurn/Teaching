@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="morelinq" Version="3.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\5.ООП\GenericClass\GenericClass\GenericClass.csproj" />
+    <ProjectReference Include="..\..\..\9.ООП.Полиморфизм\Polymorphism\Polymorphism\Polymorphism.csproj" />
+  </ItemGroup>
+
+</Project>
