@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polymorphism
 {
@@ -10,6 +6,11 @@ namespace Polymorphism
 	{
 		public string Name { get; set; }
 		public int Age { get; set; }
+
+		public Person()
+		{
+
+		}
 
 		public Person(string name, int age)
 		{
@@ -19,13 +20,8 @@ namespace Polymorphism
 
 		public virtual void Print()
 		{
-			Console.Write($"{GetType().Name}. Name: {Name}, Age: {Age}");
+			Console.WriteLine($"{GetType().Name}. Name: {Name}, Age: {Age}");
 		}
-
-		//public virtual Person Clone()
-		//{
-		//	return new Person(Name, Age);
-		//}
 
 		public virtual object Clone()
 		{
@@ -36,5 +32,27 @@ namespace Polymorphism
 		{
 			return $"{GetType().Name}. Name: {Name}, Age: {Age}";
 		}
+
+		public override bool Equals(object obj)
+		{
+			var person = obj as Person;
+
+			if (Name != person.Name)
+				return false;
+			if (Age != person.Age)
+				return false;
+
+			return true;
+		}
+
+		public static Person GetRandomPerson()
+		{
+			var random = new Random();
+
+			var max = PersonCollection.Persons.Count;
+
+			return PersonCollection.Persons[random.Next(0, max)];
+		}
+
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Polymorphism
 {
@@ -8,6 +9,14 @@ namespace Polymorphism
 
 		static void Main(string[] args)
 		{
+			var type1 = typeof(Person);
+			var type2 = typeof(Student);
+			var type3 = typeof(Teacher);
+
+			Person pers = new Student("Bob", 20, "JD", 2);
+
+			var name = pers.GetType().Name;
+
 			var student1 = new Student("Bob", 20, "JD", 2);
 			var student2 = new Student("Tom", 21, "BF", 3);
 			var student3 = new Student("name1", 1, "fac1", 1);
@@ -23,6 +32,9 @@ namespace Polymorphism
 			var teacher1 = new Teacher("1name", 11, "fac1", 5);
 			var teacher2 = new Teacher("2name", 12, "fac2", 6);
 
+			var person1 = new Person("Bomj", 42);
+			var person2 = new Person("Bomj2", 43);
+
 			_university.Move(student1);
 			_university.Move(student2);
 			_university.Move(student3);
@@ -36,6 +48,8 @@ namespace Polymorphism
 			_university.Move(teacher);
 			_university.Move(teacher1);
 			_university.Move(teacher2);
+			_university.Move(person1);
+			_university.Move(person2);
 
 			student1.TeacherId = teacher.Id;
 			student2.TeacherId = teacher.Id;
@@ -58,12 +72,20 @@ namespace Polymorphism
 			teacher2.StudentIds.Add(student6.Id);
 			teacher2.StudentIds.Add(student8.Id);
 			teacher2.StudentIds.Add(student10.Id);
+
+			var x = Person.GetRandomPerson();
+
+
+			foreach (var person in _university)
+			{
+				person.Print();
+				person = Person.GetRandomPerson();
+			}
 		}
 
 		static void Introduse(Person person)
 		{
 			person.Print();
 		}
-
 	}
 }

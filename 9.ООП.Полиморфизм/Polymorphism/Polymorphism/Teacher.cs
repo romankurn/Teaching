@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polymorphism
 {
@@ -17,7 +15,7 @@ namespace Polymorphism
 
 		public override void Print()
 		{
-			Console.WriteLine($"{GetType().Name}. Name: {Name}, Age: {Age}");
+			base.Print();
 		}
 
 		public override object Clone()
@@ -27,7 +25,27 @@ namespace Polymorphism
 
 		public override string ToString()
 		{
-			return $"{GetType().Name}. Name: {Name}, Age: {Age}, Facility: {Facility}, Course: {Course}, Students: достать имена";
+			var studentNames = ""; // выковырять имена
+
+			return $"{GetType().Name}. Name: {Name}, Age: {Age}, Facility: {Facility}, Course: {Course}, Students: {studentNames}";
+		}
+
+		public override bool Equals(object obj)
+		{
+			var person = obj as Teacher;
+
+			if (!base.Equals(person))
+				return false;
+
+			if(StudentIds.Count != (person as Teacher).StudentIds.Count)
+				return false;
+			for (var i = 0; i < StudentIds.Count; i++)
+			{
+				if (StudentIds[i] != (person as Teacher).StudentIds[i])
+					return false;
+			}
+
+			return true;
 		}
 	}
 }

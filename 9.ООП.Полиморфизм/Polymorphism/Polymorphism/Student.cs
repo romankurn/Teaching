@@ -5,10 +5,14 @@ namespace Polymorphism
 	public class Student : Person
 	{
 		public Guid Id { get; set; } = Guid.NewGuid();
-
 		public string Facility { get; set; }
 		public int Course { get; set; }
 		public Guid TeacherId { get; set; }
+
+		public Student()
+		{
+
+		}
 
 		public Student(string name, int age, string facility, int course) : base(name, age)
 		{
@@ -17,13 +21,43 @@ namespace Polymorphism
 		}
 		public override void Print()
 		{
-			base.Print();
-			Console.WriteLine($", Facility: {Facility}, Course: {Course}");
+			Console.WriteLine($"{GetType().Name}. Name: {Name}, Age: {Age}, Facility: {Facility}, Course: {Course}");
 		}
 
 		public override object Clone()
 		{
 			return new Student(Name, Age, Facility, Course) { Id = Id, TeacherId = TeacherId };
+		}
+
+		public override string ToString()
+		{
+			var teacherName = ""; // выковырять имя
+
+			return $"{GetType().Name}. Name: {Name}, Age: {Age}, Facility: {Facility}, Course: {Course}, Teacher's name: {teacherName}";
+		}
+
+		public override bool Equals(object obj)
+		{
+			var person = obj as Student;
+
+			if (!base.Equals(person))
+				return false;
+
+			if (Id != (person as Student).Id)
+				return false;
+			if (Facility != (person as Student).Facility)
+				return false;
+			if (Course != (person as Student).Course)
+				return false;
+			if (TeacherId != (person as Student).TeacherId)
+				return false;
+
+			return true;
+		}
+
+		public static Student GetRandomPerson() // переопределить статический метод
+		{
+			return new Student();
 		}
 
 		//public int CompareTo(Student other)
