@@ -2,7 +2,7 @@
 using ObjectSaver;
 using OOP1;
 
-namespace GenericTree
+namespace GenericTree.Actions
 {
 	public class LoadAction : IAction
 	{
@@ -13,10 +13,9 @@ namespace GenericTree
 			_fileName = fileName;
 		}
 
-		public IOutputParams Execute(IInputParams inputParams = null)
+		public void Execute()
 		{
-			Floor.floor = File<Inventory<Point>>.GetItemFromFile(_fileName);
-			return null;
+			File<Inventory<Point>>.GetItemFromFile(_fileName);
 		}
 	}
 }

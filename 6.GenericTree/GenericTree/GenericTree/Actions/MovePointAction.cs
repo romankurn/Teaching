@@ -1,14 +1,13 @@
-﻿using System;
-using DynamicMenu;
-using OOP1;
+﻿using DynamicMenu;
+using System;
 
-namespace GenericTree
+namespace GenericTree.Actions
 {
-	public class MoveItemAction : IAction
+	public class MovePointAction : IAction
 	{
-		public IOutputParams Execute(IInputParams inputParams = null)
+		public void Execute()
 		{
-			var soursePoint = CreateItemAction.GetPoint();
+			var soursePoint = CreatePointAction.GetPoint();
 
 			Console.Write("Enter box name: ");
 			var boxName = Console.ReadLine();
@@ -16,8 +15,6 @@ namespace GenericTree
 			var targetBox = Floor.floor.FindBox(boxName);
 			var sourceId = Floor.floor.GetItemId(soursePoint);
 			Floor.floor.Move(targetBox.Id, sourceId.Value);
-
-			return null;
 		}
 	}
 }

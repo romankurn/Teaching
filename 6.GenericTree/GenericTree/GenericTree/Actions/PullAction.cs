@@ -1,19 +1,16 @@
-﻿using System;
-using DynamicMenu;
-using OOP1;
+﻿using DynamicMenu;
+using System;
 
 namespace GenericTree.Actions
 {
 	public class PullAction : IAction
 	{
-		public IOutputParams Execute(IInputParams inputParams = null)
+		public void Execute()
 		{
-			var point = CreateItemAction.GetPoint();
+			var point = CreatePointAction.GetPoint();
 			point = Floor.floor.FindItem(point);
 
-			Console.WriteLine($"{(point != null ? point.ToString() : "nothing")} was found");
-
-			return null;
+			Console.WriteLine($"{(point != null ? point : "nothing")} was found");
 		}
 	}
 }

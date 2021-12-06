@@ -1,12 +1,13 @@
 ﻿using DynamicMenu;
 
-namespace GenericTree
-{ 
+namespace GenericTree.Actions
+{
 	public class ExitAction : IAction
 	{
-		public IOutputParams Execute(IInputParams inputParams = null)
+		public static bool exit = false;
+		public void Execute()
 		{
-			return new ExitParam {Exit = true};
+			exit = true;
 		}
 	}
 }

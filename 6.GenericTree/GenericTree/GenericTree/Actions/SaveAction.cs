@@ -12,11 +12,10 @@ namespace GenericTree.Actions
 		{
 			_fileName = fileName;
 		}
-		
-		public IOutputParams Execute(IInputParams inputParams = null)
+
+		public void Execute()
 		{
 			File<Inventory<Point>>.Save(_fileName, Floor.floor);
-			return null;
 		}
 	}
 }

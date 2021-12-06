@@ -1,14 +1,17 @@
 ﻿using DynamicMenu;
-using OOP1;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace GenericTree
+namespace GenericTree.Actions
 {
-	public class ScanAction: IAction
+	public class ScanAction : IAction
 	{
-		public IOutputParams Execute(IInputParams inputParams = null)
+		public void Execute()
 		{
 			Floor.floor.Scan();
-			return null;
 		}
 	}
 }
