@@ -1,8 +1,8 @@
-﻿using ObjectSaver;
+﻿using DynamicMenu;
+using GenericTree.Actions;
+using ObjectSaver;
 using OOP1;
 using System;
-using DynamicMenu;
-using GenericTree.Actions;
 
 namespace GenericTree
 {
@@ -13,36 +13,36 @@ namespace GenericTree
 		static void Main(string[] args)
 		{
 			var mainMenu = new Menu();
-			
+
 			var createBoxOption = new Menu("Create box", new CreateBoxAction());
-			var createItemOption = new Menu("Create item", new CreateItemAction());
-			
+			var createPointOption = new Menu("Create point", new CreatePointAction());
+
 			var moveOption = new Menu("Move ...", null);
-			var moveItemOption = new Menu("Move item", new MoveItemAction());
+			var movePointOption = new Menu("Move point", new MovePointAction());
 			var moveBoxOption = new Menu("Move box", new MoveBoxAction());
-			moveOption.AddSubMenu(moveItemOption, moveBoxOption);
+			moveOption.AddSubMenu(movePointOption, moveBoxOption);
 
 			var pullOption = new Menu("Pull", new PullAction());
 			var scanOption = new Menu("Scan", new ScanAction());
+			var exitOption = new Menu("Exit", new ExitAction());
 			var saveOption = new Menu("Save", new SaveAction(fileName));
 			var loadOption = new Menu("Load", new LoadAction(fileName));
-			var exitOption = new Menu("Close", new ExitAction());
 
-			mainMenu.AddSubMenu(createBoxOption, createItemOption, moveOption, pullOption, scanOption, saveOption, loadOption, exitOption);
+
+			mainMenu.AddSubMenu(createBoxOption, createPointOption, moveOption, pullOption, scanOption, exitOption, saveOption, loadOption);
 
 			while (true)
 			{
 				try
 				{
-					var chosenOption = mainMenu.ChooseAction();
-					var param = chosenOption.Execute();
+					mainMenu.ChooseAction();
 
-					if (param is ExitParam exitParam && exitParam.Exit)
+					if (ExitAction.exit)
 						break;
 				}
-				catch (Exception e)
+				catch (Exception ex)
 				{
-					Console.WriteLine(e);
+					Console.WriteLine(ex);
 				}
 			}
 

@@ -1,19 +1,18 @@
-﻿using System;
-using DynamicMenu;
+﻿using DynamicMenu;
 using OOP1;
+using System;
 
-namespace GenericTree
+
+namespace GenericTree.Actions
 {
-	public class CreateItemAction : IAction
+	public class CreatePointAction : IAction
 	{
-		public IOutputParams Execute(IInputParams inputParams = null)
+		public void Execute()
 		{
 			var point = GetPoint();
 
 			var item = new Inventory<Point>(InventoryType.Item, item: point);
 			Floor.floor.Push(item);
-
-			return null;
 		}
 
 		public static Point GetPoint()

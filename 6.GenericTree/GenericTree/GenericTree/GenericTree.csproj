@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\4.ООП\OOP1\OOP1\OOP1.csproj" />
-    <ProjectReference Include="..\..\..\DynamicMenu\DynamicMenu\DynamicMenu\DynamicMenu.csproj" />
+    <ProjectReference Include="..\..\..\Menu\DynamicMenu\DynamicMenu.csproj" />
     <ProjectReference Include="..\..\..\ObjectSaver\ObjectSaver\ObjectSaver.csproj" />
   </ItemGroup>
 
