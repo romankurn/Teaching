@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DynamicMenu;
+using System;
 using System.Linq;
 
 namespace Polymorphism
@@ -9,6 +10,8 @@ namespace Polymorphism
 
 		static void Main(string[] args)
 		{
+			var mainMenu = new Menu();
+
 			var type1 = typeof(Person);
 			var type2 = typeof(Student);
 			var type3 = typeof(Teacher);
@@ -34,6 +37,11 @@ namespace Polymorphism
 
 			var person1 = new Person("Bomj", 42);
 			var person2 = new Person("Bomj2", 43);
+
+			var x1 = person1.PersonalNumber;
+			var x2 = person2.PersonalNumber;
+			var y1 = student1.PersonalNumber;
+			var y2 = student2.PersonalNumber;
 
 			_university.Move(student1);
 			_university.Move(student2);
@@ -62,6 +70,8 @@ namespace Polymorphism
 			student9.TeacherId = teacher1.Id;
 			student10.TeacherId = teacher2.Id;
 
+		
+
 			teacher.StudentIds.Add(student1.Id);
 			teacher.StudentIds.Add(student2.Id);
 			teacher1.StudentIds.Add(student3.Id);
@@ -79,7 +89,6 @@ namespace Polymorphism
 			foreach (var person in _university)
 			{
 				person.Print();
-				person = Person.GetRandomPerson();
 			}
 		}
 

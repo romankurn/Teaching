@@ -4,8 +4,10 @@ namespace Polymorphism
 {
 	public class Person : ICloneable
 	{
+		private static int counter = 1;
 		public string Name { get; set; }
 		public int Age { get; set; }
+		public int PersonalNumber { get; private set; }
 
 		public Person()
 		{
@@ -16,6 +18,8 @@ namespace Polymorphism
 		{
 			Name = name;
 			Age = age;
+			PersonalNumber = counter;
+			counter++;
 		}
 
 		public virtual void Print()

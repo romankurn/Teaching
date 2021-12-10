@@ -4,6 +4,7 @@ namespace Polymorphism
 {
 	public class Student : Person
 	{
+		private static int counter = 1;
 		public Guid Id { get; set; } = Guid.NewGuid();
 		public string Facility { get; set; }
 		public int Course { get; set; }

@@ -5,7 +5,7 @@ namespace Polymorphism
 {
 	public class University
 	{
-		public List<Person> Persons { get; set; } = new List<Person>();		
+		public static List<Person> Persons { get; set; } = new List<Person>();
 
 		public void Move(Person person)
 		{

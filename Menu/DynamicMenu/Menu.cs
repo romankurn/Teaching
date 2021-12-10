@@ -71,7 +71,7 @@ namespace DynamicMenu
 
 		}
 
-		private void Execute()
+		public void Execute()
 		{
 			_action.Execute();
 		}
