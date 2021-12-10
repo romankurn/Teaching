@@ -79,7 +79,6 @@ namespace Polymorphism
 			foreach (var person in _university)
 			{
 				person.Print();
-				person = Person.GetRandomPerson();
 			}
 		}
 
