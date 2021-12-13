@@ -102,13 +102,5 @@ namespace Tests
 			person1.Equals("person1").Should().BeFalse();
 		}
 
-		[Test]
-		public void PersonGetRandomPersonTest()
-		{
-			Debug.WriteLine("PersonGetRandomPersonTest");
-
-			var person = Person.GetRandomPerson();
-			PersonCollection.Persons.Should().Contain(person);
-		}
 	}
 }
