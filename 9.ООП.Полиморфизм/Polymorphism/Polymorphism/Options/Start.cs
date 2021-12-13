@@ -15,12 +15,10 @@ namespace Polymorphism
 			var createTeacherOption = new Menu("Create teacher", new CreateTeacher());
 			createOption.AddSubMenu(createPersonOption, createStudentOption, createTeacherOption);
 
-			var getRandomPersonOption = new Menu("Get random person", new GetRandomPerson());
-
 			var scanOption = new Menu("Scan", new Scan());
 			var exitOption = new Menu("Exit", new Exit());
 
-			mainMenu.AddSubMenu(createOption, getRandomPersonOption, scanOption, exitOption);
+			mainMenu.AddSubMenu(createOption, scanOption, exitOption);
 
 			while (true)
 			{

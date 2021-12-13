@@ -37,14 +37,20 @@ namespace Polymorphism
 
 			var person = obj as Teacher;
 
-			if (!base.Equals(person))
+			if (Id != Id)
+				return false;
+			if (Facility != person.Facility)
+				return false;
+			if (Course != person.Course)
+				return false;
+			if (TeacherId != person.TeacherId)
 				return false;
 
-			if(StudentIds.Count != (person as Teacher).StudentIds.Count)
+			if (StudentIds.Count != person.StudentIds.Count)
 				return false;
 			for (var i = 0; i < StudentIds.Count; i++)
 			{
-				if (StudentIds[i] != (person as Teacher).StudentIds[i])
+				if (StudentIds[i] != person.StudentIds[i])
 					return false;
 			}
 

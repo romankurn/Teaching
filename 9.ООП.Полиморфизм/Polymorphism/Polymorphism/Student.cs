@@ -43,16 +43,17 @@ namespace Polymorphism
 
 			var person = obj as Student;
 
-			if (!base.Equals(person))
+			if (Name != person.Name)
 				return false;
-
-			if (Id != (person as Student).Id)
+			if (Age != person.Age)
 				return false;
-			if (Facility != (person as Student).Facility)
+			if (Id != person.Id)
 				return false;
-			if (Course != (person as Student).Course)
+			if (Facility != person.Facility)
 				return false;
-			if (TeacherId != (person as Student).TeacherId)
+			if (Course != person.Course)
+				return false;
+			if (TeacherId != person.TeacherId)
 				return false;
 
 			return true;
