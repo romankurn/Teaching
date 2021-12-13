@@ -35,6 +35,9 @@ namespace Polymorphism
 
 		public override bool Equals(object obj)
 		{
+			if (obj.GetType().Name != typeof(Person).Name)
+				return false;
+
 			var person = obj as Person;
 
 
