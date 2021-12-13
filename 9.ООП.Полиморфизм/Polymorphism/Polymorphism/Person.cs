@@ -40,6 +40,7 @@ namespace Polymorphism
 
 			var person = obj as Person;
 
+
 			if (Name != person.Name)
 				return false;
 			if (Age != person.Age)
@@ -52,9 +53,9 @@ namespace Polymorphism
 		{
 			var random = new Random();
 
-			var max = PersonCollection.Persons.Count;
+			var max = PersonsCollection.Persons.Count;
 
-			return PersonCollection.Persons[random.Next(0, max)];
+			return PersonsCollection.Persons[random.Next(0, max)];
 		}
 
 	}

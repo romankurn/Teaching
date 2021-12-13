@@ -58,11 +58,6 @@ namespace Polymorphism
 			return true;
 		}
 
-		public static Student GetRandomPerson() // переопределить статический метод
-		{
-			return new Student();
-		}
-
 		//public int CompareTo(Student other)
 		//{
 		//	if(other == null)
