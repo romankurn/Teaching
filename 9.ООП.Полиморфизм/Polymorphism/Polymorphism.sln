@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polymorphism", "Polymorphis
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicMenu", "..\..\Menu\DynamicMenu\DynamicMenu.csproj", "{2E231C1A-A9BF-4D52-9EDD-C5470D5829B7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectSaver", "..\..\ObjectSaver\ObjectSaver\ObjectSaver.csproj", "{44B28D14-F7F7-4442-94DF-4DC3CCC5A24D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2E231C1A-A9BF-4D52-9EDD-C5470D5829B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E231C1A-A9BF-4D52-9EDD-C5470D5829B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E231C1A-A9BF-4D52-9EDD-C5470D5829B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44B28D14-F7F7-4442-94DF-4DC3CCC5A24D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44B28D14-F7F7-4442-94DF-4DC3CCC5A24D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44B28D14-F7F7-4442-94DF-4DC3CCC5A24D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44B28D14-F7F7-4442-94DF-4DC3CCC5A24D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

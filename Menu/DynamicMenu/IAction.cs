@@ -2,6 +2,6 @@
 {
 	public interface IAction
 	{
-		void Execute(IInputParameters paramas = null);
+		void Execute();
 	}
 }

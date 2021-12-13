@@ -4,7 +4,6 @@ namespace Polymorphism
 {
 	public class Student : Person
 	{
-		private static int counter = 1;
 		public Guid Id { get; set; } = Guid.NewGuid();
 		public string Facility { get; set; }
 		public int Course { get; set; }
@@ -54,11 +53,6 @@ namespace Polymorphism
 				return false;
 
 			return true;
-		}
-
-		public static Student GetRandomPerson() // переопределить статический метод
-		{
-			return new Student();
 		}
 
 		//public int CompareTo(Student other)

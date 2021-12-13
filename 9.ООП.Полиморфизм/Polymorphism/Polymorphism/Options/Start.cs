@@ -1,27 +1,41 @@
-﻿using HWMenu;
+﻿using DynamicMenu;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polymorphism
 {
 	public class Start
 	{
-		private const string fileName = "univer.txt";
-
 		public static void Beginning()
 		{
 			var mainMenu = new Menu();
 
+			var createOption = new Menu("Create ...", null);
 			var createPersonOption = new Menu("Create person", new CreatePerson());
-			var CreateRandomPersonOption = new Menu("Create random person", new CreateRandomPerson());
-			var CreateStudentOption = new Menu("Create student", new CreateStudent());
-			var CreateRandomStudentOption = new Menu("Create random student", new CreateRandomStudent());
-			var CreateTeacherOption = new Menu("Create teacher", new CreateTeacher());
-			var CreateRandomTeacherOption = new Menu("Create random student", new CreateRandomTeacher());
+			var createStudentOption = new Menu("Create student", new CreateStudent());
+			var createTeacherOption = new Menu("Create teacher", new CreateTeacher());
+			createOption.AddSubMenu(createPersonOption, createStudentOption, createTeacherOption);
 
+			var getRandomPersonOption = new Menu("Get random person", new GetRandomPerson());
+
+			var scanOption = new Menu("Scan", new Scan());
+			var exitOption = new Menu("Exit", new Exit());
+
+			mainMenu.AddSubMenu(createOption, getRandomPersonOption, scanOption, exitOption);
+
+			while (true)
+			{
+				try
+				{
+					mainMenu.ChooseAction();
+
+					if (Exit.exit)
+						break;
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine(ex);
+				}
+			}
 		}
 	}
 }

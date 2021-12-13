@@ -12,21 +12,6 @@ namespace Polymorphism
 			Persons.Add(person);
 		}
 
-		public string GetStudentNameById(Guid id)
-		{
-			foreach (var person in Persons)
-			{
-				if (person is Student)
-				{
-					if ((person as Student).Id == id)
-					{
-						return person.Name;
-					}
-				}
-			}
-			return "Student not Found";
-		}
-
 		public int CountPersons()
 		{
 			var counter = 0;
