@@ -1,18 +1,36 @@
 using FluentAssertions;
+using Moq;
 using NUnit.Framework;
 using Polymorphism;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Tests
 {
 	[TestFixture]
 	public class Tests
 	{
+		private Student _student;
+		private University _university;
+
+		private Mock<IStudentCollection> _studentCollectionMock = new Mock<IStudentCollection>();
+
+		private List<Student> _fakeStudents1 = new List<Student>();
+		private List<Student> _fakeStudents2 = new List<Student>();
+		private List<Student> _fakeStudents3 = new List<Student>();
 
 		[OneTimeSetUp]
 		public void CallBeforeAll()
 		{
-			Debug.WriteLine("All tests will be started after this method finish");
+			_student = new Student($"{Guid.NewGuid()}", 1, "1", 1);
+			_university = new University(new StudentCollectionWrapper());
+
+			StudentTestHelper.AddFakeStudent(_student);
+
+			_fakeStudents1.Add(new Student("name1", 1, "1", 1));
+			_fakeStudents1.Add(new Student("name1", 2, "2", 1));
 		}
 
 		[SetUp]
@@ -30,7 +48,7 @@ namespace Tests
 		[OneTimeTearDown]
 		public void ClearAfterAll()
 		{
-			Debug.WriteLine("All tests completed");
+			StudentTestHelper.RemoveStudentById(_student.Id);
 		}
 
 		//"All tests will be started after this method finish"
@@ -102,5 +120,28 @@ namespace Tests
 			person1.Equals("person1").Should().BeFalse();
 		}
 
+		[Test]
+		public void GetStudentByNameTest()
+		{
+			var students = _university.GetStudentsByName(_student.Name).ToList();
+
+			students.Count.Should().Be(1);
+			students[0].Equals(_student).Should().BeTrue();
+		}
+
+
+		[Test] 
+		public void GetStudentByNameWithMoqTest()
+		{
+			_studentCollectionMock.Setup(r => r.GetStudents("name1")).Returns(_fakeStudents1);
+
+			_university = new University(_studentCollectionMock.Object);
+
+			var students = _university.GetStudentsByName("name1").ToList();
+
+			students.Count.Should().Be(2);
+			students[0].Equals(_fakeStudents1[0]).Should().BeTrue();
+			students[1].Equals(_fakeStudents1[1]).Should().BeTrue();
+		}
 	}
 }

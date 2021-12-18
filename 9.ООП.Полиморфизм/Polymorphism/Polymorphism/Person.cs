@@ -51,11 +51,8 @@ namespace Polymorphism
 
 		public static Person GetRandomPerson()
 		{
-			var random = new Random();
 
-			var max = PersonsCollection.Persons.Count;
-
-			return PersonsCollection.Persons[random.Next(0, max)];
+			return PersonsCollection.GetRandomPerson();
 		}
 
 	}
