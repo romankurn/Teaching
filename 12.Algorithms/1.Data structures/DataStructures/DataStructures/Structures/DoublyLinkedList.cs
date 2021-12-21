@@ -117,6 +117,7 @@ namespace DataStructures
 						tail = previous;
 						previous.Next = null;
 						// current.Previous = null; так надо?
+						//UPD: No - will be removed by GC
 						Count--;
 						return true;
 					}
