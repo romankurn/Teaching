@@ -21,10 +21,10 @@ namespace AlgorithmTester
 				processingTime.SaveTime(algorithm.DoTest(size, _testParams.MinValue, _testParams.MaxValue));
 			}
 
-			return new MeasurePoint { DataSize = size, Time = processingTime.CalculateMeanTime() };
+			return new MeasurePoint {Name = algorithm.Name, DataSize = size, Time = processingTime.CalculateMeanTime() };
 		}
 
-		public List<MeasurePoint> TestAlgorithm(AlgorithmBase algorithm)
+		public List<MeasurePoint> TestAlgorithm(AlgorithmBase algorithm, ConsoleColor textColor = ConsoleColor.White)
 		{
 			var measurePoints = new List<MeasurePoint>();
 
@@ -32,9 +32,19 @@ namespace AlgorithmTester
 
 			for(var size = _testParams.InitialDataSize; size <= _testParams.FinaleDataSize; size += deltaSize)
 			{
-				measurePoints.Add(MeasureTime(algorithm, size));
-				Console.WriteLine($"{size}...");
+				Console.ForegroundColor = textColor;
+				Console.Write($"{algorithm.Name}.{size}\t...\t");
+				
+				var measurePoint = MeasureTime(algorithm, size);
+
+				measurePoints.Add(measurePoint);
+
+				Console.ForegroundColor = textColor;
+				Console.WriteLine($"{measurePoint.Time}\tms");
 			}
+
+			Console.ForegroundColor = textColor;
+			Console.WriteLine("--------------------------------------------");
 
 			return measurePoints;
 		}
