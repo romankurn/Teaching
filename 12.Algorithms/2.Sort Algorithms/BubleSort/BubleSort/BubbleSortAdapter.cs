@@ -1,16 +1,16 @@
 ﻿using AlgorithmTester;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SortAlgorithms
 {
-	public class BubleSortHelper : AlgorithmBase
+	public class BubbleSortAdapter : AlgorithmBase
 	{
 		private int[] _array;
-		private BubleSort _sort = new BubleSort();
+		private BubbleSort _sort = new BubbleSort();
+
+		public BubbleSortAdapter(string name, bool isBestCase) : base(name, isBestCase)
+		{
+		}
 
 		protected override void PerformAlgorithm()
 		{
@@ -21,9 +21,18 @@ namespace SortAlgorithms
 		{
 			_array = new int[size];
 
+			if (_isBestCase)
+			{
+				for (int i = 0; i < size; i++)
+				{
+					_array[i] = i;
+				}
+				return;
+			}
+
 			var random = new Random();
 
-			for(int i = 0; i < size; i++)
+			for (int i = 0; i < size; i++)
 			{
 				_array[i] = random.Next(min, max);
 			}

@@ -4,6 +4,15 @@ namespace AlgorithmTester
 {
 	public abstract class AlgorithmBase
 	{
+		protected bool _isBestCase;
+		public string Name { get; protected set; }
+
+		protected AlgorithmBase(string name, bool isBestCase)
+		{
+			Name = name;
+			_isBestCase = isBestCase;
+		}
+
 		public double DoTest(int size, int min, int max)
 		{
 			PrepareData(size,min, max);
