@@ -1,10 +1,13 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
 namespace AlgorithmTester
 {
 	public abstract class AlgorithmBase
 	{
 		protected bool _isBestCase;
+		protected int[] _array;
+
 		public string Name { get; protected set; }
 
 		protected AlgorithmBase(string name, bool isBestCase)
@@ -26,7 +29,26 @@ namespace AlgorithmTester
 			return stopwatch.ElapsedMilliseconds;
 		}
 
-		protected abstract void PrepareData(int size, int min, int max);
+		protected virtual void PrepareData(int size, int min, int max)
+		{
+			_array = new int[size];
+
+			if (_isBestCase)
+			{
+				for (int i = 0; i < size; i++)
+				{
+					_array[i] = i;
+				}
+				return;
+			}
+
+			var random = new Random();
+
+			for (int i = 0; i < size; i++)
+			{
+				_array[i] = random.Next(min, max);
+			}
+		}
 
 		protected abstract void PerformAlgorithm();
 	}
