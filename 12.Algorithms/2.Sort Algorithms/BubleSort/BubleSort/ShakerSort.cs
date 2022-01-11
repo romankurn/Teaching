@@ -2,6 +2,7 @@
 {
 	public class ShakerSort : SortBase
 	{
+		// from O(n) to O(n2)
 		public override void Sort(int[] array)
 		{
 			var left = 0;
