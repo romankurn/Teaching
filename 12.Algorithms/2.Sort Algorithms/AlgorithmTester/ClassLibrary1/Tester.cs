@@ -6,10 +6,12 @@ namespace AlgorithmTester
 	public class Tester
 	{
 		private TestParams _testParams;
+		private IMaxValuePreparer _minMaxValuePreparer;
 
-		public Tester(TestParams testParams)
+		public Tester(TestParams testParams, IMaxValuePreparer minMaxValuePreparer = null)
 		{
 			_testParams = testParams;
+			_minMaxValuePreparer = minMaxValuePreparer;
 		}
 
 		private MeasurePoint MeasureTime(AlgorithmBase algorithm, int size)
@@ -18,7 +20,9 @@ namespace AlgorithmTester
 
 			for (int i = 0; i < _testParams.AlgorithmRepeats; i++)
 			{
-				processingTime.SaveTime(algorithm.DoTest(size, _testParams.MinValue, _testParams.MaxValue));
+				var maxValue = _minMaxValuePreparer?.FixMaxValue(size) ?? _testParams.MaxValue;
+
+				processingTime.SaveTime(algorithm.DoTest(size, _testParams.MinValue, maxValue));
 			}
 
 			return new MeasurePoint {Name = algorithm.Name, DataSize = size, Time = processingTime.CalculateMeanTime() };
