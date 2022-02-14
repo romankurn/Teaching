@@ -11,7 +11,15 @@ namespace Task2
 
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Hello World!");
+			var personsCreator = new PersonsCreator(5, 2);
+
+			for (int i = 0; i < 2; i++)
+			{
+				personsCreator.GetPersons(2, 2);
+			}
+
+			var x = personsCreator.Mens;
+			var y = personsCreator.Womens;
 		}
 	}
 }

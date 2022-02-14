@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task2
 {
 	public class Person
 	{
-		private bool _male;
-		public Person(int paramenterCount) // < n
-		{
+		public bool Male { get; private set; }
 
+		public List<int> Parameters { get; private set; }
+
+		public Person(int parameterCount, int parametersRange, bool male)
+		{
+			Male = male;
+
+			Parameters = new List<int>();
+
+			var random = new Random();
+			for (var i = 0; i < parameterCount; i++) // как сделать без цикла?
+			{
+				Parameters.Add(random.Next(1, parametersRange));
+			}
 		}
-		public List<int> Parameters { get; set; }
 	}
 }
