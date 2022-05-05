@@ -6,13 +6,24 @@ namespace DataStructures
 {
 	public class CustomStack<T> : IEnumerable<T>
 	{
-		private Node<T> _head;
+		private class StackItem<Type>
+		{
+			public StackItem(Type data)
+			{
+				Data = data;
+			}
+
+			public Type Data { get; set; }
+			public StackItem<Type> Next { get; set; }
+		}
+
+		private StackItem<T> _head;
 		public int Count { get; private set; }
 
 		//O(1)
 		public void Push(T data)
 		{
-			var node = new Node<T>(data);
+			var node = new StackItem<T>(data);
 
 			node.Next = _head;
 			_head = node;
