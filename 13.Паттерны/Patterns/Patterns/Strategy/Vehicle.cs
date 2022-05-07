@@ -16,11 +16,26 @@ namespace Patterns
 		{
 			_transporte = transporte;
 			Capacity = capacity;
+
+			if(transporte is Horse)
+			{
+				((Horse)transporte).OnStateChanged += ClearAfterHorse;
+			}
 		}
 
 		public double Move(int distance)
 		{
 			return _transporte.Move(distance);
+		}
+
+		public void ClearAfterHorse (object sender, EventArgs e)
+		{
+			var horse = sender as Horse;
+
+			if (horse == null)
+				return;
+
+			Console.WriteLine($"убрали за лошадью {horse.Name}, ехаем");
 		}
 	}
 }
