@@ -6,10 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Adapter\" />
     <Folder Include="Prototype\" />
     <Folder Include="Proxy\" />
-    <Folder Include="Singleton\" />
   </ItemGroup>
 
 </Project>
