@@ -3,6 +3,8 @@ using FactoryImplementation = Patterns.Factory.Implementation;
 using AdapterImplementation = Patterns.Adapter.Implementation;
 using SingletoneImplementation = Patterns.Singleton.Implementatoin;
 using DecoratorImplementation = Patterns.Decorator.Implementation;
+using PrototypeImplementation = Patterns.Prototype.Implementation;
+using ProxyImplementation = Patterns.Proxy.Implementation;
 using System;
 using Patterns.Observer;
 using System.Threading.Tasks;
@@ -13,7 +15,7 @@ namespace Patterns
 	{
 		static void  Main(string[] args)
 		{
-			DecoratorImplementation.Execute();
+			ProxyImplementation.Execute();
 		}
 	}
 }
