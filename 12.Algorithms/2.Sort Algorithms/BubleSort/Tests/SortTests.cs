@@ -1,6 +1,7 @@
 using FluentAssertions;
 using NUnit.Framework;
 using SortAlgorithms;
+using SortAlgorithms.EffictiveSorts;
 using System;
 using System.Linq;
 
@@ -52,6 +53,14 @@ namespace Tests
 		public void InsertSortTest()
 		{
 			var sort = new InsertSort();
+
+			SortArray(sort);
+		}
+
+		[Test]
+		public void QuickSort()
+		{
+			var sort = new QuickSort();
 
 			SortArray(sort);
 		}

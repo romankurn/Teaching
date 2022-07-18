@@ -9,10 +9,8 @@ namespace DataStructures
 	{
 		static void Main(string[] args)
 		{
-			var list = new List<int> { 1, 2, 3 };
+			var x = new CustomStack<int>();
 
-			list.Any(); // true
-			list.Any(t => t > 0);
 		}
 	}
 }
