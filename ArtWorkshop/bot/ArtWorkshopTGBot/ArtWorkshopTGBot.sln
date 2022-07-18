@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtWorkshop.TGBot", "MyTGBot\ArtWorkshop.TGBot.csproj", "{A7315D73-54F4-4BEB-ACE4-0EFB47A6D372}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtWorkshop.Client", "..\..\ArtWorkshop.Service\ArtWorkshop.Client\ArtWorkshop.Client.csproj", "{0B003343-8DEB-4A11-B807-7F4EBFF8898B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtWorkshop.Models", "..\..\ArtWorkshop.Service\ArtWorkshop.Models\ArtWorkshop.Models.csproj", "{4EC32EFB-9239-471D-99CC-D9AA7C78390B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A7315D73-54F4-4BEB-ACE4-0EFB47A6D372}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7315D73-54F4-4BEB-ACE4-0EFB47A6D372}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7315D73-54F4-4BEB-ACE4-0EFB47A6D372}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7315D73-54F4-4BEB-ACE4-0EFB47A6D372}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B003343-8DEB-4A11-B807-7F4EBFF8898B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B003343-8DEB-4A11-B807-7F4EBFF8898B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B003343-8DEB-4A11-B807-7F4EBFF8898B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B003343-8DEB-4A11-B807-7F4EBFF8898B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EC32EFB-9239-471D-99CC-D9AA7C78390B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EC32EFB-9239-471D-99CC-D9AA7C78390B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EC32EFB-9239-471D-99CC-D9AA7C78390B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EC32EFB-9239-471D-99CC-D9AA7C78390B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AAF8B027-5922-4F37-B4FB-196DA8C6E30E}
+	EndGlobalSection
+EndGlobal
